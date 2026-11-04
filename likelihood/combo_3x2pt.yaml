@@ -27,6 +27,15 @@ photoz_zmid_convention: 0
 adopt_limber_gs: 0
 # galaxy clustering: 0 = non-Limber below l = 150, 1 = Limber at every multipole
 adopt_limber_gg: 0
+# non-Limber gg engine: 0 = FKEM (the default), 1 = the low-rank DD
+# engine - the density-density term carries the full one-loop P_g
+# through a per-bin SVD of sqrt(P_g), with no Limber hand-off below
+# its ell cap (needs include_HOD_GX = 0 and adopt_limber_gg = 0)
+nonlimber_lowrank_gg: 0
+# SVD ranks kept per lens bin (1-16)
+nonlimber_lowrank_rank: 5
+# the low-rank path's own non-Limber ell cap
+nonlimber_lowrank_lmax: 150
 # galaxy probes: 0 = perturbative galaxy bias, 1 = halo-model (HOD) galaxy
 # power (Limber only: needs adopt_limber_gg = adopt_limber_gs = 1)
 include_HOD_GX: 0
