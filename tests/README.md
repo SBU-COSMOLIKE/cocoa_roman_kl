@@ -26,6 +26,27 @@ flowchart TD
 We assume Cocoa and this project are installed, the Cocoa Conda environment
 is active, the shell is Bash, and the current folder is `cocoa/Cocoa/`.
 
+> [!WARNING]
+> The snapshot was frozen with CAMB installed with the halofit tolerance
+> patch. Halofit finds the nonlinear scale by bisection; stock CAMB stops at
+> $|\sigma(R) - 1| \le 10^{-3}$ and the patch at $10^{-7}$. The precise
+> stopping point moves this survey's galaxy clustering and galaxy-galaxy
+> lensing predictions: on stock CAMB the 3x2pt and 2x2pt references move by
+> $\Delta\chi^2 = 0.76$ and $0.75$ (measured 2026-11-04), beyond the 0.2
+> limit, while cosmic shear moves by 0.009.
+>
+> `export PATCH_CAMB_HALOFIT_TOLERANCE=1` is set by default in
+> `set_installation_options.sh` since 2026-11-08, so a fresh installation
+> already has the patched CAMB. An installation made before that, or with
+> the key commented out, has stock CAMB; make sure the key is set and
+> reinstall CAMB (the setup script re-clones it and applies the patch):
+>
+> ```bash
+> export OVERWRITE_EXISTING_CAMB_CODE=1
+> source installation_scripts/setup_camb.sh
+> source installation_scripts/compile_camb.sh
+> ```
+
 Run the sectors in separate Python invocations: they initialize different
 compiled-library state. Running one project at a time also avoids importing
 another project's same-named test helpers.

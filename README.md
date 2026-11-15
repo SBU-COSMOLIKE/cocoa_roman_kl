@@ -457,6 +457,17 @@ accuracy of the hybrid emulated pipelines.
 [tests/README.md](tests/README.md) describes the checks, how to run them,
 the input data snapshots, and how to refresh them.
 
+> [!WARNING]
+> The test references need CAMB installed with the halofit tolerance patch.
+> `PATCH_CAMB_HALOFIT_TOLERANCE` is set by default in
+> `set_installation_options.sh` since 2026-11-08, so a fresh installation
+> already has the patched CAMB. An installation made before that, or with
+> the key commented out, has stock CAMB: the galaxy clustering and
+> galaxy-galaxy lensing references move by $\Delta\chi^2 = 0.76$ (3x2pt)
+> and $0.75$ (2x2pt), beyond the 0.2 limit, and those tests fail; cosmic
+> shear moves by only 0.009. [tests/README.md](tests/README.md) shows how
+> to reinstall CAMB with the patch.
+
 # Exploring notebooks <a name="notebooks"></a>
 
 **Armadillo** was chosen to make a convenient Python API for notebook

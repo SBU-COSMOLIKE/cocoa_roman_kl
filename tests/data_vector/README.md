@@ -356,7 +356,9 @@ Galaxy clustering, measured on 2026-10-01
 (`nonlimber_accuracyboost: 4`):
 
 - $\Delta\chi^2 = 47.1$ for the 3x2pt data vector, against 0.103 for
-  the same comparison in galaxy-galaxy lensing.
+  the same comparison in galaxy-galaxy lensing. On CAMB with the
+  halofit tolerance patch, the snapshot's state since 2026-11-04, the
+  clustering value is 46.7 (the test's pin); lensing is unchanged.
 - The largest contributions are lens bins 6, 7, 5, 4 with 7.6, 7.5,
   7.1, 6.2 (each bin's block alone).
 - 57.4 on 2026-09-28, when the non-Limber chi grid had 512 points
