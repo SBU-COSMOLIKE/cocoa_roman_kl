@@ -219,8 +219,8 @@ check prints four quantities:
 |---|---|
 | emulator $\chi^2$ | the emulated pipeline evaluated at the fiducial point |
 | drift | change against the stored emulator reference; nonzero means the installed emulator no longer reproduces its stored $\chi^2$ |
-| $\lvert\chi^2_\text{emulator} - \chi^2_\text{exact}\rvert$ | the emulator error against the exact-physics $\chi^2$ at the same cosmology |
-| recommendation | RECOMMENDED for actual data analysis when $\lvert\chi^2_\text{emulator} - \chi^2_\text{exact}\rvert < 0.2$, NOT recommended otherwise |
+| $\lvert\chi^2_\text{emulator} - \chi^2_\text{non-emulated}\rvert$ | the difference against the non-emulated $\chi^2$ at the same cosmology |
+| verdict | agrees at this configuration when $\lvert\chi^2_\text{emulator} - \chi^2_\text{non-emulated}\rvert < 0.2$, does not agree otherwise |
 
 A race-condition check (OpenMP threading) runs as well, warning
 instead of failing.
@@ -410,7 +410,7 @@ pair per data set, under `frozen/data/`
 | 3x2pt | `synthetic_roman_kl_3x2` | `tatt_roman_kl_3x2` |
 
 Each vector is the prediction of its own frozen configuration, so
-every exact-physics variant evaluates at its own $\chi^2$ minimum,
+every non-emulated variant evaluates at its own $\chi^2$ minimum,
 where the response to tiny numerical changes is quadratic and the
 drift and accuracy numbers stay meaningful.
 

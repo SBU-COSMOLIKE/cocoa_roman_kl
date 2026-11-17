@@ -10,7 +10,7 @@ docstring explains each of them.
 
 This file is the project "shim", a thin module that adapts the shared
 code to one project. It holds what belongs to roman_kl alone: the
-EXAMPLES table (the exact-physics configurations, their EMUL2 emulator
+EXAMPLES table (the non-emulated configurations, their EMUL2 emulator
 versions, and the synthetic NLA dataset each of them evaluates), the
 TATT point, the accuracy knobs, the CFASTPT-vs-FASTPT comparison
 settings, and two report printers used only by test_emul2.py. It builds
@@ -171,15 +171,15 @@ ACCURACY_KNOBS = [
 #                         theory blocks) replace the Boltzmann code.
 #                         These are advisory (no pass/fail; see
 #                         test_emul2.py) and have no TATT variant;
-#   "exact_example"     = the exact-physics configuration this entry is
+#   "exact_example"     = the non-emulated configuration this entry is
 #                         the emulated version of; its "nla_dataset" is
-#                         reused, so the emulated chi2 and the exact
-#                         reference are computed against the same
-#                         synthetic NLA vector (against different data
-#                         their difference would mix data mismatch with
-#                         emulator error);
-#   "exact_reference"   = the exact-physics reference chi2 key the
-#                         emulator's accuracy is judged against.
+#                         reused, so the emulated chi2 and the
+#                         non-emulated reference are computed against
+#                         the same synthetic NLA vector (against
+#                         different data their difference would mix
+#                         data mismatch with emulator error);
+#   "exact_reference"   = the non-emulated reference chi2 key the
+#                         emulator's agreement is judged against.
 EXAMPLES = {
     "example1": {
         "frozen_module": "frozen_config_example1.py",
