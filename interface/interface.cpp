@@ -691,6 +691,110 @@ PYBIND11_MODULE(cosmolike_roman_kl_interface, m)
       py::return_value_policy::move
     );
 
+  m.def("C_gg_kwindow_tomo",
+      &cosmolike_interface::C_gg_kwindow_tomo_cpp,
+      "The Fourier gg spectra (autos, cross pairs) at the data-vector band "
+      "centers with the k window of the UV-fraction scale cut "
+      "(arXiv:2603.13031): IR part (keep_ir = 1, modes k <= kmax/D(z), "
+      "kmax in h/Mpc at z = 0, D the linear growth factor with D(0) = 1) "
+      "or UV part (keep_ir = 0); kmax <= 0 gives the full spectra.",
+      py::arg("kmax").none(false),
+      py::arg("keep_ir") = 1,
+      py::return_value_policy::move
+    );
+
+  m.def("C_gg_kwindow_white_noise",
+      &cosmolike_interface::C_gg_kwindow_white_noise_cpp,
+      "The correction the low-rank IR part of the Fourier gg spectra "
+      "receives at kmax (h/Mpc at z = 0): the one-loop white-noise "
+      "constant projected through the finite-k kernel, minus its "
+      "Limber-step projection, at the data-vector band centers (autos, "
+      "cross pairs). Zero unless the low-rank engine runs with one-loop "
+      "galaxies.",
+      py::arg("kmax").none(false),
+      py::return_value_policy::move
+    );
+
+  m.def("gg_scale_cuts_tomo",
+      &cosmolike_interface::gg_scale_cuts_tomo_cpp,
+      "The UV-fraction scale cut (arXiv:2603.13031) for the Fourier gg "
+      "spectra (autos, then cross pairs) at the data-vector band "
+      "centers. Per kmax (h/Mpc at z = 0; the cut is kmax/D(z), D the "
+      "linear growth factor with D(0) = 1), C_l is split into IR and UV "
+      "parts by a step on the 3D power spectrum, in every gg engine "
+      "(Limber and non-Limber); a band is kept while "
+      "|C_UV|/(|C_UV| + |C_IR|) < alpha. Returns a dict of lmax, mask, "
+      "uv_fraction, full and ir arrays.",
+      py::arg("kmax").none(false),
+      py::arg("alpha") = 0.05,
+      py::return_value_policy::move
+    );
+
+  m.def("C_ss_kwindow_tomo",
+      &cosmolike_interface::C_ss_kwindow_tomo_cpp,
+      "The Fourier cosmic-shear EE spectra (one row per source pair, the "
+      "ss data-vector order) at the data-vector band centers with the k "
+      "window of the UV-fraction scale cut (arXiv:2603.13031): IR part "
+      "(keep_ir = 1, modes k <= kmax/D(z), kmax in h/Mpc at z = 0, D the "
+      "linear growth factor with D(0) = 1) or UV part (keep_ir = 0); "
+      "kmax <= 0 gives the full spectra. Limber, as the data vector; the "
+      "values come before the shear calibration and the mask. A "
+      "diagnostic of the evaluated model: the window never enters a "
+      "data-vector evaluation.",
+      py::arg("kmax").none(false),
+      py::arg("keep_ir") = 1,
+      py::return_value_policy::move
+    );
+
+  m.def("ss_scale_cuts_tomo",
+      &cosmolike_interface::ss_scale_cuts_tomo_cpp,
+      "The UV-fraction scale cut (arXiv:2603.13031) for the Fourier "
+      "cosmic-shear spectra at the data-vector band centers. Per kmax "
+      "(h/Mpc at z = 0; the cut is kmax/D(z), D the linear growth factor "
+      "with D(0) = 1), C_l is split into IR and UV parts by a step on the "
+      "3D power spectrum at every Limber node (the GG, GI and II terms "
+      "alike); a band is kept while |C_UV|/(|C_UV| + |C_IR|) < alpha. "
+      "Returns a dict of kmax, alpha, ell, pairs, lmax, mask, "
+      "uv_fraction, full and ir arrays.",
+      py::arg("kmax").none(false),
+      py::arg("alpha") = 0.05,
+      py::return_value_policy::move
+    );
+
+  m.def("C_gs_kwindow_tomo",
+      &cosmolike_interface::C_gs_kwindow_tomo_cpp,
+      "The Fourier galaxy-galaxy lensing spectra (one row per ggl pair "
+      "kept after ggl_exclude, the gs data-vector order) at the "
+      "data-vector band centers with the k window of the UV-fraction "
+      "scale cut (arXiv:2603.13031): IR part (keep_ir = 1, modes "
+      "k <= kmax/D(z), kmax in h/Mpc at z = 0, D the linear growth factor "
+      "with D(0) = 1) or UV part (keep_ir = 0); kmax <= 0 gives the full "
+      "spectra. The projection is the one the likelihood selected "
+      "(adopt_limber_gs: Limber or FKEM non-Limber); the values come "
+      "before the shear calibration and the mask. A diagnostic of the "
+      "evaluated model: the window never enters a data-vector "
+      "evaluation.",
+      py::arg("kmax").none(false),
+      py::arg("keep_ir") = 1,
+      py::return_value_policy::move
+    );
+
+  m.def("gs_scale_cuts_tomo",
+      &cosmolike_interface::gs_scale_cuts_tomo_cpp,
+      "The UV-fraction scale cut (arXiv:2603.13031) for the Fourier "
+      "galaxy-galaxy lensing spectra at the data-vector band centers. Per "
+      "kmax (h/Mpc at z = 0; the cut is kmax/D(z), D the linear growth "
+      "factor with D(0) = 1), C_l is split into IR and UV parts by a step "
+      "on the 3D power spectrum, in the projection the likelihood "
+      "selected (adopt_limber_gs: Limber or FKEM); a band is kept while "
+      "|C_UV|/(|C_UV| + |C_IR|) < alpha. Returns a dict of kmax, alpha, "
+      "ell, pairs (lens, source), lmax, mask, uv_fraction, full and ir "
+      "arrays.",
+      py::arg("kmax").none(false),
+      py::arg("alpha") = 0.05,
+      py::return_value_policy::move
+    );
+
   // --------------------------------------------------------------------
   // Halo model (halo.c)
   // --------------------------------------------------------------------
