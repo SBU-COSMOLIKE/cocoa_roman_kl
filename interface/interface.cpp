@@ -754,7 +754,9 @@ PYBIND11_MODULE(cosmolike_roman_kl_interface, m)
       "with D(0) = 1), C_l is split into IR and UV parts by a step on the "
       "3D power spectrum at every Limber node (the GG, GI and II terms "
       "alike); a band is kept while |C_UV|/(|C_UV| + |C_IR|) < alpha. "
-      "Returns a dict of kmax, alpha, ell, pairs, lmax, mask, "
+      "A diagnostic of the evaluated model: the window never enters a "
+      "data-vector evaluation, and it is never applied to measured band "
+      "powers. Returns a dict of kmax, alpha, ell, pairs, lmax, mask, "
       "uv_fraction, full and ir arrays.",
       py::arg("kmax").none(false),
       py::arg("alpha") = 0.05,
@@ -787,9 +789,11 @@ PYBIND11_MODULE(cosmolike_roman_kl_interface, m)
       "factor with D(0) = 1), C_l is split into IR and UV parts by a step "
       "on the 3D power spectrum, in the projection the likelihood "
       "selected (adopt_limber_gs: Limber or FKEM); a band is kept while "
-      "|C_UV|/(|C_UV| + |C_IR|) < alpha. Returns a dict of kmax, alpha, "
-      "ell, pairs (lens, source), lmax, mask, uv_fraction, full and ir "
-      "arrays.",
+      "|C_UV|/(|C_UV| + |C_IR|) < alpha. A diagnostic of the evaluated "
+      "model: the window never enters a data-vector evaluation, and it "
+      "is never applied to measured band powers. Returns a dict of kmax, "
+      "alpha, ell, pairs (lens, source), lmax, mask, uv_fraction, full "
+      "and ir arrays.",
       py::arg("kmax").none(false),
       py::arg("alpha") = 0.05,
       py::return_value_policy::move
