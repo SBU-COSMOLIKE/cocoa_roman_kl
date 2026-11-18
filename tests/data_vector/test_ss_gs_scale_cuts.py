@@ -18,7 +18,7 @@ cosmolike_core/cocoa_testing_suites.py), on the frozen 3x2pt fiducial:
   2. C_IR + C_UV = C;
   3. for C_ss with the intrinsic alignment off, C_IR agrees with an
      independent numpy Limber integral;
-  4. at k_max = 20 h/Mpc the UV fraction is below alpha in every band;
+  4. at k_max = 50 h/Mpc the UV fraction is below alpha in every band;
   5. l_max does not decrease with k_max, and the kept bands form nested
      prefixes in l;
 and the next ordinary evaluation after the cut gives the data vector
