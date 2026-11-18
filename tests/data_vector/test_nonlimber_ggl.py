@@ -82,7 +82,7 @@ import cocoa_test_utils as u
 # is what makes pytest collect it here, with unchanged test ids.
 TestNonLimberGGL = u.nonlimber_suite(
     u, name="TestNonLimberGGL", kind="ggl",
-    measured=0.1027, default=0)
+    measured=0.1029, default=0)
 
 # __name__ is "__main__" only when this file runs directly as a
 # script; pytest imports the module instead, so this block stays

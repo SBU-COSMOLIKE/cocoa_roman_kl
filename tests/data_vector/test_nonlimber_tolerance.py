@@ -23,11 +23,11 @@ the w0, wa and ROMAN_KL_B1_10 columns.
 Measured on 2026-11-18 (OMP 4), then bounded:
   - test 3: the vector does not change (no early exit in Fourier
     space);
-  - test 5: FKEM caps 150/200/300 give w0 4.64e-3/5.79e-3/7.35e-3 and
-    wa 4.13e-4/4.08e-4/3.97e-4; margin 0.1 (one-sided: the w0 noise
+  - test 5: FKEM caps 150/200 give w0 4.64e-3/5.79e-3 and
+    wa 4.13e-4/4.08e-4; margin 0.1 (one-sided: the w0 noise
     grows with the cap, so it comes from the added non-Limber
     multipoles, not from the hand-off); bound 6e-3 at cap 150;
-  - test 6: SVD/FKEM ratio at most 1.07 (w0, cap 300); margin 0.2.
+  - test 6: SVD/FKEM ratio at most 1.03 (w0, cap 200); margin 0.1.
 
 To run (from the Cocoa/ folder, cocoa environment active,
 start_cocoa.sh sourced):
@@ -55,11 +55,12 @@ import cocoa_test_utils as u
 TestNonLimberTolerance = u.nonlimber_tolerance_suite(
     u, name="TestNonLimberTolerance", example="example2",
     bias_parameter="ROMAN_KL_B1_10",
+    expected_defaults=(0.002, 0.01),
     change_bound=None,
     noise_bound=0.006,
     handoff_margin=0.1,
     svd_rule='not_larger',
-    svd_margin=0.2)
+    svd_margin=0.1)
 
 # __name__ is "__main__" only when this file runs directly as a
 # script; pytest imports the module instead, so this block stays

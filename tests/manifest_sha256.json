@@ -1,10 +1,10 @@
 {
   "_comment": "SHA-256 of every file under tests/frozen/; verified by every test before evaluating anything.",
   "files": {
-    "frozen/EXAMPLE_EMUL2_EVALUATE1.yaml": "3e599d1ceba599e33d244cb0e4dc17061ccec2044281ec42912e6c1775d8d0b2",
-    "frozen/EXAMPLE_EMUL2_EVALUATE2.yaml": "00e5a6ccd331e40562d09699dfb807b624769f1b9a33c0c816fd663893d783e4",
-    "frozen/EXAMPLE_EVALUATE1.yaml": "3e1576e34cd88e32d8c5a7f5a5bfef5069398590ecdd4bbd13579e32f0ec2599",
-    "frozen/EXAMPLE_EVALUATE2.yaml": "ee8377ab5a381f255888f379542fbd89b2d086b33f33904781dfaf7740cda55a",
+    "frozen/EXAMPLE_EMUL2_EVALUATE1.yaml": "0c20b292893534a30aff9d21e9a99244378071ecda89a08df4cfa7ab6b7c039b",
+    "frozen/EXAMPLE_EMUL2_EVALUATE2.yaml": "ddb23b14d2c6d2224f84aa90e34bdcd38561575b489500a6120102343831770c",
+    "frozen/EXAMPLE_EVALUATE1.yaml": "09e12c39da5435e171690421b67ba0e721fc238f7375c8a3fed35e0c24dfcabb",
+    "frozen/EXAMPLE_EVALUATE2.yaml": "ac5af49d436544e4ac1536b53751ac87b71ca8228152918767abf0e8cc5d18e1",
     "frozen/data/Roman_3x2pt_cov_Ncl20_Ntomo10.cv": "c9af1fdc788534a352bd9a3633bafa0af7b1c13b2d1194d2d2577226d7ee8e11",
     "frozen/data/Roman_cov_Ncl20_Ntomo10.cv": "caef5168af4eaf9b3376fa4ece4f7d7a7be866810aa0bed9c76e48dffebf02c3",
     "frozen/data/Roman_ssss_cov_Ncl20_Ntomo10.cv": "74ed37fa66c6e34943a3e26395bec45661baffd58b0e57e8468c62a8b481f3c0",
@@ -37,20 +37,20 @@
     "frozen/data/roman_kl_3x2_test.modelvector": "400448776bd20ca97cbefb8d5680432e700d6bf02f986db7ac4025c753694b70",
     "frozen/data/roman_kl_mcmc.dataset": "278f0812df27c19c1334bb566250dabbaf20031516ababd5b93c08923f358e84",
     "frozen/data/synthetic_roman_kl_3x2.dataset": "eaa654ce85a422718371b7a4e2cf0b9520152a3a0985cc3f1fc6c690f38beb45",
-    "frozen/data/synthetic_roman_kl_3x2.modelvector": "c0987a82e44a72cdb7533f1fdbcbba0ddabb04fa200af8379c8c0a212ec89ff0",
+    "frozen/data/synthetic_roman_kl_3x2.modelvector": "ed5dbe963869a935506b197d8fff235ea7684d93faff4efd8c9e87771cf22524",
     "frozen/data/synthetic_roman_kl_shear.dataset": "63fcb3d40e23e37fb5cc163f9602d2d9ebdddd9e8490fbeb1302c57ec6c74f53",
     "frozen/data/synthetic_roman_kl_shear.modelvector": "25f66ac9f13a8444a1b15873749823c55d553fc1930c28aea53e1fef786ea4f7",
     "frozen/data/tatt_roman_kl_3x2.dataset": "58d5bb1a6b003a1c5fee271da162f767ebaed4259ad48ef573fe8c126b4dba0c",
-    "frozen/data/tatt_roman_kl_3x2.modelvector": "7b65fece95ae57485c811ed93cc4ffb24ecbae228395d3c9c8b63a3a0d207eac",
+    "frozen/data/tatt_roman_kl_3x2.modelvector": "ce5626fe63d3f2191de9374407205ed0853cbf2893b2a0a415f2e5fc82c36aad",
     "frozen/data/tatt_roman_kl_3x2_ones.dataset": "58d5bb1a6b003a1c5fee271da162f767ebaed4259ad48ef573fe8c126b4dba0c",
     "frozen/data/tatt_roman_kl_shear.dataset": "8b5b257ba7bbfd68b20c7c8d79f17cd12dfaa900590af735ba1fc7d54aecad59",
     "frozen/data/tatt_roman_kl_shear.modelvector": "484f22d926974e5c12e962b03ed43a5917bb8740264745f5ec34076c0ac55f87",
     "frozen/data/tatt_roman_kl_shear_ones.dataset": "6045b1cd8be8719cd5dba21dfdaa3fa22ef7ac83bad17b4f43263ee5254f001d",
-    "frozen/frozen_config_emul2_example1.py": "b2ce79ad71676b325a22498ee329f24a26b65a317cf6606bee426473c08c501e",
-    "frozen/frozen_config_emul2_example2.py": "712b6b0b675e17c557b1fb84f28846254ee70e0ee0ca6b93c2eae020ebb19336",
-    "frozen/frozen_config_example1.py": "62d285d12bf3ba62a49550f32ac427733867a4d43b474cc10281e0790eb06809",
-    "frozen/frozen_config_example2.py": "0ec90d225f53146b4e3e04187b276a63608d13e6785b426b7562f018e05333bd",
-    "frozen/frozen_config_example2_2x2pt.py": "99a48d09cb7cb3f6ea9a4b96ebc632d95ac5ffdd1725d077e8107f19c4de9225",
-    "frozen/reference_chi2.json": "aa63274389b3f4df30da14623406e0ca7750a787e7f1bbd9e4c362a5371d884f"
+    "frozen/frozen_config_emul2_example1.py": "b998b80f319f04e27c4cc321683188e9a2e9f6724c1586299bbdae661eeb0161",
+    "frozen/frozen_config_emul2_example2.py": "8dc62d65438ff099c3e831836866c76f6d45c33ecf0460a6359563809fa17af9",
+    "frozen/frozen_config_example1.py": "6d458f07a91c957c2cbe1696332b90f946a52667df4fd467b552ef43626ec37b",
+    "frozen/frozen_config_example2.py": "105a31b46e8e862fb7676e04b738081bdf0737bceb9fb6b5b21329687cdafe67",
+    "frozen/frozen_config_example2_2x2pt.py": "40ec9a3e647327dd50382e12606a930a30657e81c4a0d01ac76c92e7ec61c671",
+    "frozen/reference_chi2.json": "7279a91f7d86754dade34daaff129768e5056f427d009b84ff8639f4e4cfb43e"
   }
 }

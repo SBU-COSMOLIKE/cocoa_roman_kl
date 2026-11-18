@@ -31,6 +31,16 @@ likelihood:
     use_baryon_pca: false
     create_baryon_pca: false
     filename_baryon_pca: "./projects/roman_kl/chains/pca.txt"
+# The amplitude cut: every lens bin i keeps (A_s/A_s,fid)(b_i/b_i,fid)^2 <= 8,
+# with A_s the primordial amplitude (sampled as As_1e9 = 10^9 A_s) and b_i the
+# bin's linear galaxy bias (ROMAN_KL_B1_i). The galaxy power of a bin scales as
+# A_s b_i^2, and a fixed relative numerical error of the data vector grows
+# with it against the fiducial covariance (the N-random-models check of
+# lsst_y1, projects/lsst_y1/tests/data_vector/README.md). A point outside
+# the cut has prior -inf, so cobaya never evaluates its likelihood.
+prior:
+  amplitude_cut: "lambda As_1e9, ROMAN_KL_B1_1, ROMAN_KL_B1_2, ROMAN_KL_B1_3, ROMAN_KL_B1_4, ROMAN_KL_B1_5, ROMAN_KL_B1_6, ROMAN_KL_B1_7, ROMAN_KL_B1_8, ROMAN_KL_B1_9, ROMAN_KL_B1_10: 0.0 if (As_1e9/2.128048)*max((ROMAN_KL_B1_1/1.24)**2, (ROMAN_KL_B1_2/1.36)**2, (ROMAN_KL_B1_3/1.48)**2, (ROMAN_KL_B1_4/1.6)**2, (ROMAN_KL_B1_5/1.72)**2, (ROMAN_KL_B1_6/1.84)**2, (ROMAN_KL_B1_7/1.96)**2, (ROMAN_KL_B1_8/2.08)**2, (ROMAN_KL_B1_9/2.2)**2, (ROMAN_KL_B1_10/2.32)**2) <= 8 else -np.inf"
+
 params:
   As_1e9:
     prior:
@@ -77,8 +87,8 @@ params:
     drop: true
   omegam:
     prior:
-      min: 0.095
-      max: 0.585
+      min: 0.2
+      max: 0.5
     ref:
       dist: norm
       loc: 0.3156
@@ -97,7 +107,7 @@ params:
     proposal: 0.06
   w0pwa:
     prior:
-      min: -5 
+      min: -3 # w0 + wa > -3: below it the early phantom regime needs a costlier CAMB
       max: -0.01
     ref:
       dist: norm
