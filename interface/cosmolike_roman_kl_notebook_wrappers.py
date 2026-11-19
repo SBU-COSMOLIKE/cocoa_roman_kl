@@ -100,6 +100,7 @@ from getdist import IniFile
 # interface/ directory is part of the Cocoa PYTHONPATH).
 sys.path.insert(0, os.environ["ROOTDIR"] + "/external_modules/code/cosmolike_core")
 import cosmolike_notebook_utils as cnu
+from cosmolike_notebook_utils.fisher import nonlimber_derivative_mode
 import cosmolike_roman_kl_interface as ci
 
 # OpenMP team size of the compiled loops, read once at import from
@@ -224,6 +225,13 @@ GGL_EXCLUDE_3X2PT = _ggl_exclude_3x2pt()
 # ggl_exclude = GGL_EXCLUDE_3X2PT and nonlimber_accuracyboost = 4.0
 # (likelihood/combo_3x2pt.yaml) before init_cosmolike.
 _CONFIG = {
+    # Base early-exit tolerances; Fisher reads temporarily use zero.
+    "nonlimber_tolerance_gg": 0.002,
+    "nonlimber_tolerance_gs": 0.01,
+    # FKEM multipole cap, separate from the low-rank engine cap.
+    "lmax_nonlimber": 200,
+    # Upper redshift; independent of the radial sampling density.
+    "nonlimber_zmax": 4.5,
     # external_modules/data/roman_kl is a link to this project's data/
     "path": os.environ["ROOTDIR"] + "/external_modules/data/roman_kl",
     "data_file": "roman_kl_mcmc.dataset",
@@ -247,13 +255,13 @@ _CONFIG = {
     # the comoving-distance grid of the non-Limber FFTLog integrals; the
     # narrow 3x2pt lens bins need 4.0 (likelihood/combo_3x2pt.yaml)
     "nonlimber_accuracyboost": 1.0,
-    # 0 = exact (non-Limber) projection below l = 150, 1 = Limber
+    # 0 = non-Limber below the configured multipole cap, 1 = Limber
     "adopt_limber_gs": 0,
     "adopt_limber_gg": 0,
     # non-Limber gg engine: 0 = FKEM, 1 = the low-rank engine
     "nonlimber_lowrank_gg": 0,
     "nonlimber_lowrank_rank": 5,
-    "nonlimber_lowrank_lmax": 150,
+    "nonlimber_lowrank_lmax": 200,
     "include_HOD_GX": 0,        # 0 = perturbative galaxy bias
     "include_halo_IA": 0,       # 0 = the init_IA model
     "non_linear_emul": 2,       # 1 = EuclidEmulator2, 2 = halofit
@@ -282,6 +290,10 @@ def configure(**overrides):
     silently. Options read by init_cosmolike (dataset, excluded pairs,
     model choices) take effect at the next init_cosmolike call.
 
+    nonlimber_zmax must be finite and at least 4.0. A valid change
+    updates the compiled endpoint immediately; the next prediction
+    rebuilds its cached projections. Invalid values leave state intact.
+
     Arguments:
       overrides = keyword form of any _CONFIG entry, e.g.
                   configure(data_file="roman_kl_3x2.dataset").
@@ -298,10 +310,18 @@ def configure(**overrides):
             raise KeyError(
                 f"configure() got unknown option '{name}'; valid options: "
                 + ", ".join(sorted(_CONFIG)))
+    if "nonlimber_zmax" in overrides:
+        endpoint = float(overrides["nonlimber_zmax"])
+        if not np.isfinite(endpoint) or endpoint < 4.0:
+            raise ValueError(
+                f"nonlimber_zmax = {endpoint}; choose a finite value >= 4.0")
+
     if overrides.get("photoz_histogram_akima", 0) not in (0, 1):
         raise ValueError("configure(): photoz_histogram_akima must be 0 or 1")
     for name, value in overrides.items():
         _CONFIG[name] = value
+    if "nonlimber_zmax" in overrides:
+        ci.init_nonlimber_zmax(zmax=endpoint)
 
 
 def current_config():
@@ -374,6 +394,11 @@ def init_cosmolike(CLprobe=None, with_data=False):
         allsims = None
 
     ci.initial_setup()
+    ci.init_nonlimber_zmax(zmax=float(_CONFIG["nonlimber_zmax"]))
+    ci.init_nonlimber_tolerance(
+        gg_tol=float(_CONFIG["nonlimber_tolerance_gg"]),
+        gs_tol=float(_CONFIG["nonlimber_tolerance_gs"]))
+    ci.init_lmax_nonlimber(lmax=int(_CONFIG["lmax_nonlimber"]))
     if CLprobe is not None:
         ci.init_probes(possible_probes=CLprobe)
     ci.init_binning(int(ini.int("n_cl")),
@@ -495,6 +520,7 @@ def _set_state(omegam, omegab, H0, ns, As_1e9, w, w0pwa,
       ValueError when baryon_sims is given but no HDF5 file is known,
       or when suppression misses a redshift of the grid.
     """
+    ci.init_nonlimber_zmax(zmax=float(_CONFIG["nonlimber_zmax"]))
     if kmax is None:
         kmax = _CONFIG["camb_kmax"]
     if k_per_logint is None:
@@ -745,8 +771,8 @@ def C_gg_tomo(ell=None, limber=0, omegam=omegam, omegab=omegab, H0=H0,
 
     Clustering state only. limber = 1 evaluates the Limber
     approximation at every multipole (ci.C_gg_tomo_limber); anything
-    else evaluates ci.C_gg_tomo (non-Limber below l = 150 with
-    adopt_limber_gg = 0), so the two can be compared on the same state.
+    else evaluates ci.C_gg_tomo (non-Limber below the configured multipole
+    cap with adopt_limber_gg = 0), so the two can be compared on the same state.
 
     Arguments:
       ell = 1D array of multipoles, or None for the band centers;
@@ -966,8 +992,8 @@ def gg_scale_cuts_tomo(kmax, alpha=0.05, omegam=omegam, omegab=omegab,
     which splits every C_gg band power into its IR and UV parts at each
     k_max and keeps a band while |C_UV|/(|C_UV| + |C_IR|) < alpha. The
     step multiplies P(k) inside every gg engine of the data vector, the
-    non-Limber projection below l = 150 included, so no Limber relation
-    between l and k enters the cut.
+    non-Limber projection below the configured cap included, so no Limber
+    relation between l and k enters the cut.
 
     Arguments:
       kmax  = 1D array of cuts in h/Mpc at z = 0, strictly ascending;
@@ -1239,7 +1265,13 @@ def get_dv(param=None, AccuracyBoost=1.0):
                CLIntegrationAccuracy=0, non_linear_emul=None,
                M=M, shear_photoz_bias=shear_photoz_bias,
                A1=A1_FID, A2=A2_FID, BTA=BTA_FID)
-    return np.array(ci.compute_data_vector_masked(), dtype=np.float64)
+    # A stencil must not change its stopping multipole between points.
+    # Restore configured bases, not the accuracy-scaled getter values.
+    with nonlimber_derivative_mode(
+            interface=ci,
+            production_gg=_CONFIG["nonlimber_tolerance_gg"],
+            production_gs=_CONFIG["nonlimber_tolerance_gs"]):
+        return np.array(ci.compute_data_vector_masked(), dtype=np.float64)
 
 
 def get_ddv(index=0, h=0.02, CV=None, AccuracyBoost=1.0):

@@ -11,6 +11,9 @@ internal_accuracyboost: 1.0 # C-FAST-PT convolution grid / output grid
 # 4: the narrow lens bins need NL_Nchi = 2048 (3x2pt chi2 moves by 8.4,
 # 0.09, 1e-5 from NL_Nchi 512 to 1024, 2048, 4096; 2026-10-01)
 nonlimber_accuracyboost: 4.0
+# Upper redshift of the non-Limber distance grid; finite and >= 4.
+# Independent of radial sampling; the core default is 4.0.
+nonlimber_zmax: 4.5
 pk_z_refinement: 1
 # early-exit tolerances of the non-Limber real-space C_l (w(theta), gamma_t);
 # 0 = no early exit (Fisher derivatives); accuracyboost > 1 shrinks them

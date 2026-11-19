@@ -1,0 +1,1456 @@
+{
+  "date": "2026-11-19",
+  "scope": "Update numerical references at the chosen project endpoint; also record cumulative drift since their previous generation.",
+  "previous_reference_project_commit": "60d5fdd6a03e163b1a7072506676f1b452eaf9f8",
+  "previous_reference_commit_description": "Raise the non-Limber cap to 200 (yaml key lmax_nonlimber)\n\nOnly the non-Limber C_gg / C_gs multipoles between 150 and 200 move; C_ss\nis bit for bit. Frozen references and measured constants regenerated.\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>",
+  "project_commit_before_refreeze": "442fc32315ee04be94ae65a0e986fb6997f1e494",
+  "endpoint_feature_core_commit": "f8a80548d3a0e26caa861cb6dec51022d8be03fb",
+  "installed_binary_sha256": "cf7fe79ab4d2def95ac578605794ff80923d4c2e1a588062207adfc9f751a492",
+  "source_identity_note": "The feature commit identifies the endpoint implementation. The binary hash identifies the exact executable used in these tests; later unrelated source commits are not a claim of a newer compiled binary.",
+  "nonlimber_zmax": 4.5,
+  "omp_threads": 6,
+  "blas_threads": 1,
+  "configuration_changes": [
+    {
+      "example": "example1",
+      "changes": [
+        [
+          [
+            "likelihood",
+            "roman_kl.cosmic_shear",
+            "nonlimber_zmax"
+          ],
+          null,
+          4.5
+        ]
+      ],
+      "errors": [],
+      "live_parameter_changes_not_adopted": [],
+      "live_prior_changes_not_adopted": [],
+      "live_fixed_params_changes_not_adopted": []
+    },
+    {
+      "example": "example2",
+      "changes": [
+        [
+          [
+            "likelihood",
+            "roman_kl.combo_3x2pt",
+            "nonlimber_lowrank_lmax"
+          ],
+          150,
+          200
+        ],
+        [
+          [
+            "likelihood",
+            "roman_kl.combo_3x2pt",
+            "nonlimber_zmax"
+          ],
+          null,
+          4.5
+        ]
+      ],
+      "errors": [],
+      "live_parameter_changes_not_adopted": [],
+      "live_prior_changes_not_adopted": [],
+      "live_fixed_params_changes_not_adopted": []
+    },
+    {
+      "example": "example2_2x2pt",
+      "changes": [
+        [
+          [
+            "likelihood",
+            "roman_kl.combo_2x2pt",
+            "nonlimber_lowrank_lmax"
+          ],
+          150,
+          200
+        ],
+        [
+          [
+            "likelihood",
+            "roman_kl.combo_2x2pt",
+            "nonlimber_zmax"
+          ],
+          null,
+          4.5
+        ]
+      ],
+      "errors": [],
+      "live_parameter_changes_not_adopted": [],
+      "live_prior_changes_not_adopted": [],
+      "live_fixed_params_changes_not_adopted": []
+    },
+    {
+      "example": "emul2_example1",
+      "changes": [
+        [
+          [
+            "likelihood",
+            "roman_kl.cosmic_shear",
+            "nonlimber_zmax"
+          ],
+          null,
+          4.5
+        ]
+      ],
+      "errors": [],
+      "live_parameter_changes_not_adopted": [],
+      "live_prior_changes_not_adopted": [],
+      "live_fixed_params_changes_not_adopted": []
+    },
+    {
+      "example": "emul2_example2",
+      "changes": [
+        [
+          [
+            "likelihood",
+            "roman_kl.combo_3x2pt",
+            "nonlimber_lowrank_lmax"
+          ],
+          150,
+          200
+        ],
+        [
+          [
+            "likelihood",
+            "roman_kl.combo_3x2pt",
+            "nonlimber_zmax"
+          ],
+          null,
+          4.5
+        ]
+      ],
+      "errors": [],
+      "live_parameter_changes_not_adopted": [],
+      "live_prior_changes_not_adopted": [],
+      "live_fixed_params_changes_not_adopted": []
+    }
+  ],
+  "endpoint_only_comparisons": [
+    {
+      "project": "roman_kl",
+      "example": "example1",
+      "tatt": false,
+      "all_limber": false,
+      "blocks": [
+        {
+          "block": "ss",
+          "entries": 1100,
+          "changed": 0
+        },
+        {
+          "block": "gs",
+          "entries": 2000,
+          "changed": 0
+        },
+        {
+          "block": "gg",
+          "entries": 200,
+          "changed": 0
+        }
+      ],
+      "endpoint": 4.5,
+      "difference_chi2": 0.0,
+      "binary_sha256": "cf7fe79ab4d2def95ac578605794ff80923d4c2e1a588062207adfc9f751a492",
+      "round_trip_exact": true
+    },
+    {
+      "project": "roman_kl",
+      "example": "example1",
+      "tatt": true,
+      "all_limber": false,
+      "blocks": [
+        {
+          "block": "ss",
+          "entries": 1100,
+          "changed": 0
+        },
+        {
+          "block": "gs",
+          "entries": 2000,
+          "changed": 0
+        },
+        {
+          "block": "gg",
+          "entries": 200,
+          "changed": 0
+        }
+      ],
+      "endpoint": 4.5,
+      "difference_chi2": 0.0,
+      "binary_sha256": "cf7fe79ab4d2def95ac578605794ff80923d4c2e1a588062207adfc9f751a492",
+      "round_trip_exact": true
+    },
+    {
+      "project": "roman_kl",
+      "example": "example2_2x2pt",
+      "tatt": false,
+      "all_limber": false,
+      "blocks": [
+        {
+          "block": "ss",
+          "entries": 1100,
+          "changed": 0
+        },
+        {
+          "block": "gs",
+          "entries": 900,
+          "changed": 405
+        },
+        {
+          "block": "gg",
+          "entries": 200,
+          "changed": 90
+        }
+      ],
+      "endpoint": 4.5,
+      "difference_chi2": 4.474664239913017e-05,
+      "binary_sha256": "cf7fe79ab4d2def95ac578605794ff80923d4c2e1a588062207adfc9f751a492",
+      "round_trip_exact": true
+    },
+    {
+      "project": "roman_kl",
+      "example": "example2_2x2pt",
+      "tatt": true,
+      "all_limber": false,
+      "blocks": [
+        {
+          "block": "ss",
+          "entries": 1100,
+          "changed": 0
+        },
+        {
+          "block": "gs",
+          "entries": 900,
+          "changed": 405
+        },
+        {
+          "block": "gg",
+          "entries": 200,
+          "changed": 90
+        }
+      ],
+      "endpoint": 4.5,
+      "difference_chi2": 4.4746642399131314e-05,
+      "binary_sha256": "cf7fe79ab4d2def95ac578605794ff80923d4c2e1a588062207adfc9f751a492",
+      "round_trip_exact": true
+    },
+    {
+      "project": "roman_kl",
+      "example": "example2",
+      "tatt": false,
+      "all_limber": false,
+      "blocks": [
+        {
+          "block": "ss",
+          "entries": 1100,
+          "changed": 0
+        },
+        {
+          "block": "gs",
+          "entries": 900,
+          "changed": 405
+        },
+        {
+          "block": "gg",
+          "entries": 200,
+          "changed": 90
+        }
+      ],
+      "endpoint": 4.5,
+      "difference_chi2": 4.550362021557787e-05,
+      "binary_sha256": "cf7fe79ab4d2def95ac578605794ff80923d4c2e1a588062207adfc9f751a492",
+      "round_trip_exact": true
+    },
+    {
+      "project": "roman_kl",
+      "example": "example2",
+      "tatt": false,
+      "all_limber": true,
+      "blocks": [
+        {
+          "block": "ss",
+          "entries": 1100,
+          "changed": 0
+        },
+        {
+          "block": "gs",
+          "entries": 900,
+          "changed": 0
+        },
+        {
+          "block": "gg",
+          "entries": 200,
+          "changed": 0
+        }
+      ],
+      "endpoint": 4.5,
+      "difference_chi2": 0.0,
+      "binary_sha256": "cf7fe79ab4d2def95ac578605794ff80923d4c2e1a588062207adfc9f751a492",
+      "round_trip_exact": true
+    },
+    {
+      "project": "roman_kl",
+      "example": "example2",
+      "tatt": true,
+      "all_limber": false,
+      "blocks": [
+        {
+          "block": "ss",
+          "entries": 1100,
+          "changed": 0
+        },
+        {
+          "block": "gs",
+          "entries": 900,
+          "changed": 405
+        },
+        {
+          "block": "gg",
+          "entries": 200,
+          "changed": 90
+        }
+      ],
+      "endpoint": 4.5,
+      "difference_chi2": 4.5503620215579925e-05,
+      "binary_sha256": "cf7fe79ab4d2def95ac578605794ff80923d4c2e1a588062207adfc9f751a492",
+      "round_trip_exact": true
+    }
+  ],
+  "cumulative_serialized_vector_comparison": [
+    {
+      "file": "baryon_baccoemu.modelvector",
+      "before_sha256": "691b2ff3b10c1a5611f9c62d8593ffe4c2fdf047f192699034931132c1e4c8ca",
+      "after_sha256": "691b2ff3b10c1a5611f9c62d8593ffe4c2fdf047f192699034931132c1e4c8ca",
+      "file_bytes_identical": true,
+      "old_shape": [
+        3300,
+        2
+      ],
+      "new_shape": [
+        3300,
+        2
+      ],
+      "changed_numeric_entries_per_column": [
+        0,
+        0
+      ],
+      "changed_bit_entries_per_column": [
+        0,
+        0
+      ],
+      "changed_serialized_tokens_per_column": [
+        0,
+        0
+      ],
+      "blocks": [
+        {
+          "block": "ss",
+          "entries": 1100,
+          "changed_rows_any_numeric_column": 0,
+          "changed_rows_any_bit_column": 0,
+          "max_absolute_change": 0.0
+        },
+        {
+          "block": "gs",
+          "entries": 2000,
+          "changed_rows_any_numeric_column": 0,
+          "changed_rows_any_bit_column": 0,
+          "max_absolute_change": 0.0
+        },
+        {
+          "block": "gg",
+          "entries": 200,
+          "changed_rows_any_numeric_column": 0,
+          "changed_rows_any_bit_column": 0,
+          "max_absolute_change": 0.0
+        }
+      ],
+      "status": "classified"
+    },
+    {
+      "file": "baryon_bcemu.modelvector",
+      "before_sha256": "3c710320e5950dc5e2105d23f90580a75d00e870f2604b9eed19e86ca9ecbbf6",
+      "after_sha256": "3c710320e5950dc5e2105d23f90580a75d00e870f2604b9eed19e86ca9ecbbf6",
+      "file_bytes_identical": true,
+      "old_shape": [
+        3300,
+        2
+      ],
+      "new_shape": [
+        3300,
+        2
+      ],
+      "changed_numeric_entries_per_column": [
+        0,
+        0
+      ],
+      "changed_bit_entries_per_column": [
+        0,
+        0
+      ],
+      "changed_serialized_tokens_per_column": [
+        0,
+        0
+      ],
+      "blocks": [
+        {
+          "block": "ss",
+          "entries": 1100,
+          "changed_rows_any_numeric_column": 0,
+          "changed_rows_any_bit_column": 0,
+          "max_absolute_change": 0.0
+        },
+        {
+          "block": "gs",
+          "entries": 2000,
+          "changed_rows_any_numeric_column": 0,
+          "changed_rows_any_bit_column": 0,
+          "max_absolute_change": 0.0
+        },
+        {
+          "block": "gg",
+          "entries": 200,
+          "changed_rows_any_numeric_column": 0,
+          "changed_rows_any_bit_column": 0,
+          "max_absolute_change": 0.0
+        }
+      ],
+      "status": "classified"
+    },
+    {
+      "file": "baryon_bcemu2025.modelvector",
+      "before_sha256": "0bbd0a229f094d6ab4e5673f59da92169eb7a293801705fcd827aa8fd8ec6588",
+      "after_sha256": "0bbd0a229f094d6ab4e5673f59da92169eb7a293801705fcd827aa8fd8ec6588",
+      "file_bytes_identical": true,
+      "old_shape": [
+        3300,
+        2
+      ],
+      "new_shape": [
+        3300,
+        2
+      ],
+      "changed_numeric_entries_per_column": [
+        0,
+        0
+      ],
+      "changed_bit_entries_per_column": [
+        0,
+        0
+      ],
+      "changed_serialized_tokens_per_column": [
+        0,
+        0
+      ],
+      "blocks": [
+        {
+          "block": "ss",
+          "entries": 1100,
+          "changed_rows_any_numeric_column": 0,
+          "changed_rows_any_bit_column": 0,
+          "max_absolute_change": 0.0
+        },
+        {
+          "block": "gs",
+          "entries": 2000,
+          "changed_rows_any_numeric_column": 0,
+          "changed_rows_any_bit_column": 0,
+          "max_absolute_change": 0.0
+        },
+        {
+          "block": "gg",
+          "entries": 200,
+          "changed_rows_any_numeric_column": 0,
+          "changed_rows_any_bit_column": 0,
+          "max_absolute_change": 0.0
+        }
+      ],
+      "status": "classified"
+    },
+    {
+      "file": "baryon_flamingo.modelvector",
+      "before_sha256": "7ec11b0d39e083879f8c847b3c6d92259f4bc2c6b7a103a80537c3a424597a24",
+      "after_sha256": "28c38621ebfe2b1760d663d39911e0d0abf4e03d348eaf57cfab0ecf9007a146",
+      "file_bytes_identical": false,
+      "old_shape": [
+        3300,
+        2
+      ],
+      "new_shape": [
+        3300,
+        2
+      ],
+      "changed_numeric_entries_per_column": [
+        0,
+        23
+      ],
+      "changed_bit_entries_per_column": [
+        0,
+        23
+      ],
+      "changed_serialized_tokens_per_column": [
+        0,
+        23
+      ],
+      "blocks": [
+        {
+          "block": "ss",
+          "entries": 1100,
+          "changed_rows_any_numeric_column": 23,
+          "changed_rows_any_bit_column": 23,
+          "max_absolute_change": 1.0000000168623835e-16
+        },
+        {
+          "block": "gs",
+          "entries": 2000,
+          "changed_rows_any_numeric_column": 0,
+          "changed_rows_any_bit_column": 0,
+          "max_absolute_change": 0.0
+        },
+        {
+          "block": "gg",
+          "entries": 200,
+          "changed_rows_any_numeric_column": 0,
+          "changed_rows_any_bit_column": 0,
+          "max_absolute_change": 0.0
+        }
+      ],
+      "status": "classified"
+    },
+    {
+      "file": "baryon_spk_akino.modelvector",
+      "before_sha256": "8e73f3dc861a210adf242c661e3a7fba19ccdf875fab74e3aeaa063dc03bed07",
+      "after_sha256": "8e73f3dc861a210adf242c661e3a7fba19ccdf875fab74e3aeaa063dc03bed07",
+      "file_bytes_identical": true,
+      "old_shape": [
+        3300,
+        2
+      ],
+      "new_shape": [
+        3300,
+        2
+      ],
+      "changed_numeric_entries_per_column": [
+        0,
+        0
+      ],
+      "changed_bit_entries_per_column": [
+        0,
+        0
+      ],
+      "changed_serialized_tokens_per_column": [
+        0,
+        0
+      ],
+      "blocks": [
+        {
+          "block": "ss",
+          "entries": 1100,
+          "changed_rows_any_numeric_column": 0,
+          "changed_rows_any_bit_column": 0,
+          "max_absolute_change": 0.0
+        },
+        {
+          "block": "gs",
+          "entries": 2000,
+          "changed_rows_any_numeric_column": 0,
+          "changed_rows_any_bit_column": 0,
+          "max_absolute_change": 0.0
+        },
+        {
+          "block": "gg",
+          "entries": 200,
+          "changed_rows_any_numeric_column": 0,
+          "changed_rows_any_bit_column": 0,
+          "max_absolute_change": 0.0
+        }
+      ],
+      "status": "classified"
+    },
+    {
+      "file": "baryon_spk_double_power_law.modelvector",
+      "before_sha256": "8d788eaef39acb4b28297f552022239e100de53cd28c60a5fa93bede568edcf4",
+      "after_sha256": "8d788eaef39acb4b28297f552022239e100de53cd28c60a5fa93bede568edcf4",
+      "file_bytes_identical": true,
+      "old_shape": [
+        3300,
+        2
+      ],
+      "new_shape": [
+        3300,
+        2
+      ],
+      "changed_numeric_entries_per_column": [
+        0,
+        0
+      ],
+      "changed_bit_entries_per_column": [
+        0,
+        0
+      ],
+      "changed_serialized_tokens_per_column": [
+        0,
+        0
+      ],
+      "blocks": [
+        {
+          "block": "ss",
+          "entries": 1100,
+          "changed_rows_any_numeric_column": 0,
+          "changed_rows_any_bit_column": 0,
+          "max_absolute_change": 0.0
+        },
+        {
+          "block": "gs",
+          "entries": 2000,
+          "changed_rows_any_numeric_column": 0,
+          "changed_rows_any_bit_column": 0,
+          "max_absolute_change": 0.0
+        },
+        {
+          "block": "gg",
+          "entries": 200,
+          "changed_rows_any_numeric_column": 0,
+          "changed_rows_any_bit_column": 0,
+          "max_absolute_change": 0.0
+        }
+      ],
+      "status": "classified"
+    },
+    {
+      "file": "baryon_spk_power_law.modelvector",
+      "before_sha256": "b16e83dc80be1a1283ef6ed558bdb0912bbc3f44658f3bc11a221ca0964d6c22",
+      "after_sha256": "b16e83dc80be1a1283ef6ed558bdb0912bbc3f44658f3bc11a221ca0964d6c22",
+      "file_bytes_identical": true,
+      "old_shape": [
+        3300,
+        2
+      ],
+      "new_shape": [
+        3300,
+        2
+      ],
+      "changed_numeric_entries_per_column": [
+        0,
+        0
+      ],
+      "changed_bit_entries_per_column": [
+        0,
+        0
+      ],
+      "changed_serialized_tokens_per_column": [
+        0,
+        0
+      ],
+      "blocks": [
+        {
+          "block": "ss",
+          "entries": 1100,
+          "changed_rows_any_numeric_column": 0,
+          "changed_rows_any_bit_column": 0,
+          "max_absolute_change": 0.0
+        },
+        {
+          "block": "gs",
+          "entries": 2000,
+          "changed_rows_any_numeric_column": 0,
+          "changed_rows_any_bit_column": 0,
+          "max_absolute_change": 0.0
+        },
+        {
+          "block": "gg",
+          "entries": 200,
+          "changed_rows_any_numeric_column": 0,
+          "changed_rows_any_bit_column": 0,
+          "max_absolute_change": 0.0
+        }
+      ],
+      "status": "classified"
+    },
+    {
+      "file": "roman_kl_2.modelvector",
+      "before_sha256": "315eea98fa8d4a451f96def50af348a54ac0e72f7797e416bd8f869f4ab8902a",
+      "after_sha256": "315eea98fa8d4a451f96def50af348a54ac0e72f7797e416bd8f869f4ab8902a",
+      "file_bytes_identical": true,
+      "old_shape": [
+        3300,
+        2
+      ],
+      "new_shape": [
+        3300,
+        2
+      ],
+      "changed_numeric_entries_per_column": [
+        0,
+        0
+      ],
+      "changed_bit_entries_per_column": [
+        0,
+        0
+      ],
+      "changed_serialized_tokens_per_column": [
+        0,
+        0
+      ],
+      "blocks": [
+        {
+          "block": "ss",
+          "entries": 1100,
+          "changed_rows_any_numeric_column": 0,
+          "changed_rows_any_bit_column": 0,
+          "max_absolute_change": 0.0
+        },
+        {
+          "block": "gs",
+          "entries": 2000,
+          "changed_rows_any_numeric_column": 0,
+          "changed_rows_any_bit_column": 0,
+          "max_absolute_change": 0.0
+        },
+        {
+          "block": "gg",
+          "entries": 200,
+          "changed_rows_any_numeric_column": 0,
+          "changed_rows_any_bit_column": 0,
+          "max_absolute_change": 0.0
+        }
+      ],
+      "status": "classified"
+    },
+    {
+      "file": "roman_kl_3x2.modelvector",
+      "before_sha256": "162aea8dd0f0ae9b4e79ba7409d8e1d793a5bf3c83df3cb4420d67c1ff9fe42d",
+      "after_sha256": "162aea8dd0f0ae9b4e79ba7409d8e1d793a5bf3c83df3cb4420d67c1ff9fe42d",
+      "file_bytes_identical": true,
+      "old_shape": [
+        2200,
+        2
+      ],
+      "new_shape": [
+        2200,
+        2
+      ],
+      "changed_numeric_entries_per_column": [
+        0,
+        0
+      ],
+      "changed_bit_entries_per_column": [
+        0,
+        0
+      ],
+      "changed_serialized_tokens_per_column": [
+        0,
+        0
+      ],
+      "blocks": [
+        {
+          "block": "ss",
+          "entries": 1100,
+          "changed_rows_any_numeric_column": 0,
+          "changed_rows_any_bit_column": 0,
+          "max_absolute_change": 0.0
+        },
+        {
+          "block": "gs",
+          "entries": 900,
+          "changed_rows_any_numeric_column": 0,
+          "changed_rows_any_bit_column": 0,
+          "max_absolute_change": 0.0
+        },
+        {
+          "block": "gg",
+          "entries": 200,
+          "changed_rows_any_numeric_column": 0,
+          "changed_rows_any_bit_column": 0,
+          "max_absolute_change": 0.0
+        }
+      ],
+      "status": "classified"
+    },
+    {
+      "file": "roman_kl_3x2_test.modelvector",
+      "before_sha256": "400448776bd20ca97cbefb8d5680432e700d6bf02f986db7ac4025c753694b70",
+      "after_sha256": "400448776bd20ca97cbefb8d5680432e700d6bf02f986db7ac4025c753694b70",
+      "file_bytes_identical": true,
+      "old_shape": [
+        2200,
+        2
+      ],
+      "new_shape": [
+        2200,
+        2
+      ],
+      "changed_numeric_entries_per_column": [
+        0,
+        0
+      ],
+      "changed_bit_entries_per_column": [
+        0,
+        0
+      ],
+      "changed_serialized_tokens_per_column": [
+        0,
+        0
+      ],
+      "blocks": [
+        {
+          "block": "ss",
+          "entries": 1100,
+          "changed_rows_any_numeric_column": 0,
+          "changed_rows_any_bit_column": 0,
+          "max_absolute_change": 0.0
+        },
+        {
+          "block": "gs",
+          "entries": 900,
+          "changed_rows_any_numeric_column": 0,
+          "changed_rows_any_bit_column": 0,
+          "max_absolute_change": 0.0
+        },
+        {
+          "block": "gg",
+          "entries": 200,
+          "changed_rows_any_numeric_column": 0,
+          "changed_rows_any_bit_column": 0,
+          "max_absolute_change": 0.0
+        }
+      ],
+      "status": "classified"
+    },
+    {
+      "file": "synthetic_roman_kl_3x2.modelvector",
+      "before_sha256": "ed5dbe963869a935506b197d8fff235ea7684d93faff4efd8c9e87771cf22524",
+      "after_sha256": "f0d4c64acc630485af2f52399e49ec8ff3cee9a551d8aa82dda9dc78d40683e7",
+      "file_bytes_identical": false,
+      "old_shape": [
+        2200,
+        2
+      ],
+      "new_shape": [
+        2200,
+        2
+      ],
+      "changed_numeric_entries_per_column": [
+        0,
+        495
+      ],
+      "changed_bit_entries_per_column": [
+        0,
+        495
+      ],
+      "changed_serialized_tokens_per_column": [
+        0,
+        495
+      ],
+      "blocks": [
+        {
+          "block": "ss",
+          "entries": 1100,
+          "changed_rows_any_numeric_column": 0,
+          "changed_rows_any_bit_column": 0,
+          "max_absolute_change": 0.0
+        },
+        {
+          "block": "gs",
+          "entries": 900,
+          "changed_rows_any_numeric_column": 405,
+          "changed_rows_any_bit_column": 405,
+          "max_absolute_change": 4.327400000001037e-11
+        },
+        {
+          "block": "gg",
+          "entries": 200,
+          "changed_rows_any_numeric_column": 90,
+          "changed_rows_any_bit_column": 90,
+          "max_absolute_change": 4.9975999999988694e-09
+        }
+      ],
+      "status": "classified"
+    },
+    {
+      "file": "synthetic_roman_kl_shear.modelvector",
+      "before_sha256": "25f66ac9f13a8444a1b15873749823c55d553fc1930c28aea53e1fef786ea4f7",
+      "after_sha256": "25f66ac9f13a8444a1b15873749823c55d553fc1930c28aea53e1fef786ea4f7",
+      "file_bytes_identical": true,
+      "old_shape": [
+        3300,
+        2
+      ],
+      "new_shape": [
+        3300,
+        2
+      ],
+      "changed_numeric_entries_per_column": [
+        0,
+        0
+      ],
+      "changed_bit_entries_per_column": [
+        0,
+        0
+      ],
+      "changed_serialized_tokens_per_column": [
+        0,
+        0
+      ],
+      "blocks": [
+        {
+          "block": "ss",
+          "entries": 1100,
+          "changed_rows_any_numeric_column": 0,
+          "changed_rows_any_bit_column": 0,
+          "max_absolute_change": 0.0
+        },
+        {
+          "block": "gs",
+          "entries": 2000,
+          "changed_rows_any_numeric_column": 0,
+          "changed_rows_any_bit_column": 0,
+          "max_absolute_change": 0.0
+        },
+        {
+          "block": "gg",
+          "entries": 200,
+          "changed_rows_any_numeric_column": 0,
+          "changed_rows_any_bit_column": 0,
+          "max_absolute_change": 0.0
+        }
+      ],
+      "status": "classified"
+    },
+    {
+      "file": "tatt_roman_kl_3x2.modelvector",
+      "before_sha256": "ce5626fe63d3f2191de9374407205ed0853cbf2893b2a0a415f2e5fc82c36aad",
+      "after_sha256": "cd4f5477d3e6f6bce9da996962d6aef92c12c7e93a43d561c1a280c0ebf07e2d",
+      "file_bytes_identical": false,
+      "old_shape": [
+        2200,
+        2
+      ],
+      "new_shape": [
+        2200,
+        2
+      ],
+      "changed_numeric_entries_per_column": [
+        0,
+        495
+      ],
+      "changed_bit_entries_per_column": [
+        0,
+        495
+      ],
+      "changed_serialized_tokens_per_column": [
+        0,
+        495
+      ],
+      "blocks": [
+        {
+          "block": "ss",
+          "entries": 1100,
+          "changed_rows_any_numeric_column": 0,
+          "changed_rows_any_bit_column": 0,
+          "max_absolute_change": 0.0
+        },
+        {
+          "block": "gs",
+          "entries": 900,
+          "changed_rows_any_numeric_column": 405,
+          "changed_rows_any_bit_column": 405,
+          "max_absolute_change": 4.327400000001037e-11
+        },
+        {
+          "block": "gg",
+          "entries": 200,
+          "changed_rows_any_numeric_column": 90,
+          "changed_rows_any_bit_column": 90,
+          "max_absolute_change": 4.9975999999988694e-09
+        }
+      ],
+      "status": "classified"
+    },
+    {
+      "file": "tatt_roman_kl_shear.modelvector",
+      "before_sha256": "484f22d926974e5c12e962b03ed43a5917bb8740264745f5ec34076c0ac55f87",
+      "after_sha256": "484f22d926974e5c12e962b03ed43a5917bb8740264745f5ec34076c0ac55f87",
+      "file_bytes_identical": true,
+      "old_shape": [
+        3300,
+        2
+      ],
+      "new_shape": [
+        3300,
+        2
+      ],
+      "changed_numeric_entries_per_column": [
+        0,
+        0
+      ],
+      "changed_bit_entries_per_column": [
+        0,
+        0
+      ],
+      "changed_serialized_tokens_per_column": [
+        0,
+        0
+      ],
+      "blocks": [
+        {
+          "block": "ss",
+          "entries": 1100,
+          "changed_rows_any_numeric_column": 0,
+          "changed_rows_any_bit_column": 0,
+          "max_absolute_change": 0.0
+        },
+        {
+          "block": "gs",
+          "entries": 2000,
+          "changed_rows_any_numeric_column": 0,
+          "changed_rows_any_bit_column": 0,
+          "max_absolute_change": 0.0
+        },
+        {
+          "block": "gg",
+          "entries": 200,
+          "changed_rows_any_numeric_column": 0,
+          "changed_rows_any_bit_column": 0,
+          "max_absolute_change": 0.0
+        }
+      ],
+      "status": "classified"
+    }
+  ],
+  "interpretation": "The endpoint comparisons hold the binary, physical parameters and all other numerical controls fixed. Their cosmic shear and individually Limber blocks must be identical. Changes in those blocks in the separate old-reference comparison cannot be attributed to the endpoint. That comparison spans the older source history and any deliberately updated numerical settings.",
+  "attribution_limit": "This record measures each changed observable block. It does not assign cumulative historical differences to individual commits without an independent comparison.",
+  "validation": {
+    "full_run_xml_counts": {
+      "tests": 93,
+      "failures": 1,
+      "errors": 0,
+      "skipped": 1
+    },
+    "accepted_failures": [],
+    "retry_evidence": {
+      "original": "91 passed, one confounded SVD comparison failed, one Fourier-only skip",
+      "correction": "Set the same galaxy-shear FKEM cap for both gg engines; no margin or native-code change.",
+      "retry": "The failed comparison and production restoration pass with the corrected helper.",
+      "original_xml_sha256": "b9dadf1a68ebfe9079a7537d3dae26d14ae51177f2a1bb7a26e37a9e1dd59954",
+      "retry_xml_sha256": "639c8e48e456444b92c343eb77e90fa8e421cf798c52e77f25a67c619233bb87",
+      "retry_log_sha256": "d777e0aeb62f5e4d8340f429d207c6e5f5b49f56815c34e33a9dcfefa2e60c61",
+      "helper_sha256": "6a8e26c462f825bcb0efa6255f4db1c3082c771f6e3853aa420d4e33fbbf39b0",
+      "total_passed": 92,
+      "total_skipped": 1,
+      "affected_project_results": {
+        "roman_kl": {
+          "passed": 2,
+          "tests": [
+            "test_6_svd_noise",
+            "test_9_production_state_restored"
+          ],
+          "elapsed_seconds": 118.94155430793762,
+          "fingerprint": {
+            "interface/cosmolike_roman_kl_interface.so": "cf7fe79ab4d2def95ac578605794ff80923d4c2e1a588062207adfc9f751a492",
+            "tests/manifest_sha256.json": "f31a078da11dd9827b5077705eb74e6c458d4e8fb22ab26894e0c5a63ef0ac6a",
+            "tests/cocoa_test_utils.py": "7673a9e1cbc5a26462d662914b28a3ad12bb7f5b693fda9a5d1d5ae95574b49b",
+            "likelihood/__init__.py": "062c1edd97087c0cc1223712eef246978ad2753a59265287315315220c6f63f7",
+            "likelihood/_cosmolike_prototype_base.py": "442dca975922bd63661f5efc4e2bce1efa5f3ef3f1cbfd9c8469c3dd520c11c2",
+            "likelihood/combo_2x2pt.py": "b5eb4b5ba7373c0037e3ed2e6289930cb73a30a678bfabfa7b40a66f9962ba93",
+            "likelihood/combo_3x2pt.py": "8455accb162b6fadb64b70db800e322f92d4dd8e46588764d320f6bcd96dcb50",
+            "likelihood/combo_xi_gg.py": "ebb526b23347de579ef43129d38d811df5c0038374c5c9ca2f4b4bdddd9c28f3",
+            "likelihood/combo_xi_ggl.py": "b719d33599372d70dcbb064214c2d8e731c6ad3d342b9bb4ea6aae3e4e233dd4",
+            "likelihood/cosmic_shear.py": "7b6c718b4a95cd3324e7456265a15a6f4c0554a794f694afb307941b8d83523d",
+            "likelihood/combo_2x2pt.yaml": "63394ba5e4ee82d5beb1d1d2ebd260fc407bd5c366af3b4c2160dcea8af45d7a",
+            "likelihood/combo_3x2pt.yaml": "a17048bcf518973f2a6baf8ce59f4b1c409c2c4840fae730eb9aa0bac76cdd98",
+            "likelihood/combo_xi_gg.yaml": "f8ef17d8c2ad976de4f9bdd901bdd364ac83059eac8e88bfbb58afa11046b20a",
+            "likelihood/combo_xi_ggl.yaml": "2f051e93350a4d3eab4ed4e8a026038984fc7af07ba73091fb809dfc80cd3508",
+            "likelihood/cosmic_shear.yaml": "68f5eb51947bacb099ab70002263a67470d5a6f63bdd0637693406ba05db4da3",
+            "likelihood/params_lens.yaml": "959b2c72ecc6901648919903c93b8da06c6d6f8b0fa78861a6706c9351e906df",
+            "likelihood/params_source.yaml": "c0d2d57eae028553284f1e2b8026666d12ba238c664ee96e423609e3e589cb46"
+          },
+          "helper_sha256": "6a8e26c462f825bcb0efa6255f4db1c3082c771f6e3853aa420d4e33fbbf39b0",
+          "log_sha256": "d777e0aeb62f5e4d8340f429d207c6e5f5b49f56815c34e33a9dcfefa2e60c61",
+          "xml_sha256": "639c8e48e456444b92c343eb77e90fa8e421cf798c52e77f25a67c619233bb87",
+          "omp_threads": 6,
+          "blas_threads": 1
+        },
+        "lsst_y1": {
+          "passed": 2,
+          "tests": [
+            "test_6_svd_noise",
+            "test_9_production_state_restored"
+          ],
+          "elapsed_seconds": 81.47239995002747,
+          "fingerprint": {
+            "interface/cosmolike_lsst_y1_interface.so": "ea61b2e35379d3b65d11784b8bb869f9386b0f269f2e84cf63866fdc7260a25d",
+            "tests/manifest_sha256.json": "5937611a0aa9a9972ae04574e347609f53cc6482099dfe568e9bb2c41df30ff3",
+            "tests/cocoa_test_utils.py": "ea5097cde3a9b3ed1241d1d412555d0fbc2b73961b9da8019fc6b5271f5a9299",
+            "likelihood/__init__.py": "fb3a82e10bccf30cbffa165d054363cd0f902debae758b8524b120e0ff375b0f",
+            "likelihood/_cosmolike_prototype_base.py": "4c4780624e880b42cc6832ce17429f84eaf47023cf6a296f3bcf60596b5ee872",
+            "likelihood/combo_2x2pt.py": "7a2c482f86c6c6f886cfff82767a047d18312f09af5807a8b49f2cb7ca4e0f37",
+            "likelihood/combo_3x2pt.py": "0beb4a4bc8a82caf5c85bc7b0689f6c626950b24d10e0542b410d5c0eaf9d5ab",
+            "likelihood/combo_xi_gg.py": "8034b2907a290d5656a609cd67b3e1eceaa06c787dc4fff25cb57c66d1c6a576",
+            "likelihood/combo_xi_ggl.py": "db07ae90adf183425a79615d9a44c63c85d690025f75692099a3611ff109309c",
+            "likelihood/cosmic_shear.py": "396461d4a5810e5fb18ba560d35d50e61985ef3423cddbfade08ed173fd4db18",
+            "likelihood/combo_2x2pt.yaml": "892b923f777fad2757ef843ee93b60da9f03ea6cf3ab8d04d305fa5ea4dcbb09",
+            "likelihood/combo_3x2pt.yaml": "7bbfcf075fb78cf029d82cf322565c601fe1b12dab406851102210952b74878b",
+            "likelihood/combo_xi_gg.yaml": "e5b87329a1ffe3900605297f0bddc9f39f4897d018dd78470f6c3aa2cea217b9",
+            "likelihood/combo_xi_ggl.yaml": "d3c0f867f3979b275ae41b1d0a32ecfa013e661e0272a886edd631deab3fd936",
+            "likelihood/cosmic_shear.yaml": "7a06f0e5a41f85151a397fc6262042f184c99fe12981169718aad29563047395",
+            "likelihood/params_lens.yaml": "7affe9ec9ced091ececd6a720ab6f800f11e681f19644c4cc268b24a71fc8ac8",
+            "likelihood/params_source.yaml": "b3be088d881118f266c5edf827f9e59e252e477e8f954aa6658fdb0496deab0d"
+          },
+          "helper_sha256": "6a8e26c462f825bcb0efa6255f4db1c3082c771f6e3853aa420d4e33fbbf39b0",
+          "log_sha256": "b78f193c5a6aae4683dbdcb854ba9adbfea4434152f17e47e4098fbfbb5e4bff",
+          "xml_sha256": "783490a824f455c43df1d55af7bd033737511271d7fb75dc37f58f27c1b70272",
+          "omp_threads": 6,
+          "blas_threads": 1
+        },
+        "roman_fourier": {
+          "passed": 2,
+          "tests": [
+            "test_6_svd_noise",
+            "test_9_production_state_restored"
+          ],
+          "elapsed_seconds": 107.1764657497406,
+          "fingerprint": {
+            "interface/cosmolike_roman_fourier_interface.so": "0108c2281a5bb528f8a108e15f1638b6f49028f66b400ba76a82e74ad05f4c5d",
+            "tests/manifest_sha256.json": "683253574dfce8ac787ec9c81f127ae195c2b130a10e681026615e3cd66c610b",
+            "tests/cocoa_test_utils.py": "4e184530814f7e158cef8209cd306615bef0f6be97c2c4bbc0918176b054c22f",
+            "likelihood/__init__.py": "27a1dcaf09ebee92f409595049320f90f1f7125c392acf9abd9a9185a7235580",
+            "likelihood/_cosmolike_prototype_base.py": "22b9d213b8d4165b44c864a75dd72bfa302592585150d6d2f8ff1f5147c3a0d4",
+            "likelihood/combo_2x2pt.py": "7700bb5acecc4937a5a979dc63ab3c2533ba00c4d5a8696c2ae42840804e7844",
+            "likelihood/combo_3x2pt.py": "8dd9bccf7d81183d63afa5de90ecd5861b2ef4a1f67f2a7495535d663ce2d704",
+            "likelihood/cosmic_shear.py": "04c459d2e8e41fd24c10625e8122b1871be04f367aaef77c0667199c2d5fc4df",
+            "likelihood/combo_2x2pt.yaml": "07f3013c1e8cd58ce0ca54f56c239df49d8bddb83a50b85760b15025d47bbee3",
+            "likelihood/combo_3x2pt.yaml": "07f3013c1e8cd58ce0ca54f56c239df49d8bddb83a50b85760b15025d47bbee3",
+            "likelihood/cosmic_shear.yaml": "e5542017f57fd6a4fa0b08f523a0f7b9815a33f8561f05eb91ec46296bc9a9fa",
+            "likelihood/params_lens.yaml": "d6acf4e7b3e38bf61b0bbc3e0fab9b9038c4fc561f20d945bd0528a4263339a1",
+            "likelihood/params_source.yaml": "496a3706b02abd123c04fec4275346b698094ffd0c93e3c7d6a7ed00d3fe42ae"
+          },
+          "helper_sha256": "6a8e26c462f825bcb0efa6255f4db1c3082c771f6e3853aa420d4e33fbbf39b0",
+          "log_sha256": "f7e5c6cdb311de82c1f1e4845163bba17f00b7f702f5429ce04beb79166feedf",
+          "xml_sha256": "fdffed5b8ebee9ed0eb2c6fb46501ab66b077a35843a89636bb8297a6eea78e2",
+          "omp_threads": 6,
+          "blas_threads": 1
+        }
+      }
+    },
+    "quick_tests_log_sha256": "7bcc77f695bed15c4c5edae3d7955bbbd0961e0d3d78064aecd97bcb2e556af5",
+    "reference_manifest_sha256": "f31a078da11dd9827b5077705eb74e6c458d4e8fb22ab26894e0c5a63ef0ac6a",
+    "combined_after_targeted_retry": {
+      "passed": 92,
+      "skipped": 1,
+      "unresolved_failures": 0,
+      "original_full_run_preserved": true
+    },
+    "controlled_comparison_record": "tests/nonlimber_matched_caps_20261119.json"
+  },
+  "reference_chi2_before": {
+    "_meta": {
+      "chi2_tolerance": 0.2,
+      "generated_utc": "2026-11-18T21:41:14Z",
+      "omp_num_threads": "4"
+    },
+    "emul2_example1_nla": 1.5121317819658486,
+    "emul2_example2_nla": 5.293882228837603,
+    "example1_nla": 6.995173902980759e-11,
+    "example1_tatt": 7.486141034846733e-11,
+    "example2_2x2pt_nla": 2.2126455478940116e-12,
+    "example2_2x2pt_tatt": 2.2193365883500785e-12,
+    "example2_nla": 8.282393697022925e-11,
+    "example2_tatt": 8.720774245128726e-11
+  },
+  "reference_chi2_after": {
+    "_meta": {
+      "chi2_tolerance": 0.2,
+      "generated_utc": "2026-11-19T07:31:09Z",
+      "omp_num_threads": "6"
+    },
+    "emul2_example1_nla": 1.5121317819658484,
+    "emul2_example2_nla": 5.29359432471869,
+    "example1_nla": 6.995173902980759e-11,
+    "example1_tatt": 7.486141034846733e-11,
+    "example2_2x2pt_nla": 2.228605883627722e-12,
+    "example2_2x2pt_tatt": 2.236589570871909e-12,
+    "example2_nla": 8.31780394546137e-11,
+    "example2_tatt": 8.716359495927455e-11
+  },
+  "endpoint_band_checks": {
+    "layout": "Pair-major ordering with 20 bands per spectrum; native index start + Ncl*pair + band.",
+    "ell_centers": [
+      22.83261982833388,
+      29.758240226578494,
+      38.78454894973715,
+      50.54872955461419,
+      65.88123695590491,
+      85.86442074969804,
+      111.90893024087899,
+      145.85329474434218,
+      190.09370871466967,
+      247.75318347273367,
+      322.9020062573863,
+      420.845069207839,
+      548.4963513524143,
+      714.8669889686507,
+      931.7013880895631,
+      1214.306283495328,
+      1582.6312689731556,
+      2062.6770754424924,
+      2688.3310098608654,
+      3503.7591218824946
+    ],
+    "controls": "Same native binary and physical point, endpoint 4 versus 4.5, FKEM cap 200.",
+    "comparisons": [
+      {
+        "example": "example1_nla",
+        "fkem_cap": 200,
+        "blocks": [
+          {
+            "block": "ss",
+            "changed_rows": 0,
+            "changed_band_indices": [],
+            "largest_changed_ell": null
+          },
+          {
+            "block": "gs",
+            "changed_rows": 0,
+            "changed_band_indices": [],
+            "largest_changed_ell": null
+          },
+          {
+            "block": "gg",
+            "changed_rows": 0,
+            "changed_band_indices": [],
+            "largest_changed_ell": null
+          }
+        ]
+      },
+      {
+        "example": "example1_tatt",
+        "fkem_cap": 200,
+        "blocks": [
+          {
+            "block": "ss",
+            "changed_rows": 0,
+            "changed_band_indices": [],
+            "largest_changed_ell": null
+          },
+          {
+            "block": "gs",
+            "changed_rows": 0,
+            "changed_band_indices": [],
+            "largest_changed_ell": null
+          },
+          {
+            "block": "gg",
+            "changed_rows": 0,
+            "changed_band_indices": [],
+            "largest_changed_ell": null
+          }
+        ]
+      },
+      {
+        "example": "example2_2x2pt_nla",
+        "fkem_cap": 200,
+        "blocks": [
+          {
+            "block": "ss",
+            "changed_rows": 0,
+            "changed_band_indices": [],
+            "largest_changed_ell": null
+          },
+          {
+            "block": "gs",
+            "changed_rows": 405,
+            "changed_band_indices": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ],
+            "largest_changed_ell": 190.09370871466967
+          },
+          {
+            "block": "gg",
+            "changed_rows": 90,
+            "changed_band_indices": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ],
+            "largest_changed_ell": 190.09370871466967
+          }
+        ]
+      },
+      {
+        "example": "example2_2x2pt_tatt",
+        "fkem_cap": 200,
+        "blocks": [
+          {
+            "block": "ss",
+            "changed_rows": 0,
+            "changed_band_indices": [],
+            "largest_changed_ell": null
+          },
+          {
+            "block": "gs",
+            "changed_rows": 405,
+            "changed_band_indices": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ],
+            "largest_changed_ell": 190.09370871466967
+          },
+          {
+            "block": "gg",
+            "changed_rows": 90,
+            "changed_band_indices": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ],
+            "largest_changed_ell": 190.09370871466967
+          }
+        ]
+      },
+      {
+        "example": "example2_nla",
+        "fkem_cap": 200,
+        "blocks": [
+          {
+            "block": "ss",
+            "changed_rows": 0,
+            "changed_band_indices": [],
+            "largest_changed_ell": null
+          },
+          {
+            "block": "gs",
+            "changed_rows": 405,
+            "changed_band_indices": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ],
+            "largest_changed_ell": 190.09370871466967
+          },
+          {
+            "block": "gg",
+            "changed_rows": 90,
+            "changed_band_indices": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ],
+            "largest_changed_ell": 190.09370871466967
+          }
+        ]
+      },
+      {
+        "example": "example2_nla_limber",
+        "fkem_cap": 200,
+        "blocks": [
+          {
+            "block": "ss",
+            "changed_rows": 0,
+            "changed_band_indices": [],
+            "largest_changed_ell": null
+          },
+          {
+            "block": "gs",
+            "changed_rows": 0,
+            "changed_band_indices": [],
+            "largest_changed_ell": null
+          },
+          {
+            "block": "gg",
+            "changed_rows": 0,
+            "changed_band_indices": [],
+            "largest_changed_ell": null
+          }
+        ]
+      },
+      {
+        "example": "example2_tatt",
+        "fkem_cap": 200,
+        "blocks": [
+          {
+            "block": "ss",
+            "changed_rows": 0,
+            "changed_band_indices": [],
+            "largest_changed_ell": null
+          },
+          {
+            "block": "gs",
+            "changed_rows": 405,
+            "changed_band_indices": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ],
+            "largest_changed_ell": 190.09370871466967
+          },
+          {
+            "block": "gg",
+            "changed_rows": 90,
+            "changed_band_indices": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ],
+            "largest_changed_ell": 190.09370871466967
+          }
+        ]
+      }
+    ]
+  }
+}

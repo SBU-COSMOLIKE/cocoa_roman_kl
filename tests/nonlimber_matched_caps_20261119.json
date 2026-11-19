@@ -1,0 +1,119 @@
+{
+  "date": "2026-11-19",
+  "scope": "Correct a shared test comparison; no native implementation, physical parameter, frozen reference or assertion margin changes.",
+  "shared_helper_core_commit": "2bc4500a9a55c1c4dcbe26952e0cfd658846fdc5",
+  "shared_helper_sha256": "6a8e26c462f825bcb0efa6255f4db1c3082c771f6e3853aa420d4e33fbbf39b0",
+  "previous_helper_core_commit": "0de919b",
+  "previous_helper_sha256": "2e52cd118a5075e950e6d2bd14bec9bd59f2e2b7b5d0f626f1cb74517b0581fc",
+  "cause": "The legacy SVD run left galaxy-shear at the production FKEM cap while the paired FKEM run changed that cap. The corrected helper sets both caps to the requested comparison value and retains its finally-based production restoration.",
+  "controlled_evidence_project": "roman_kl",
+  "controlled_evidence": {
+    "finding": "The old low-cap comparison changed gs projection settings as well as the gg engine. Matching the gs cap removes the failure without changing any margin or native implementation.",
+    "comparisons": [
+      {
+        "cap": 150,
+        "fkem_sigma": {
+          "w0": 0.004129304802344561,
+          "wa": 0.0004137010269278194,
+          "ROMAN_KL_B1_10": 4.1599699505149496e-13
+        },
+        "matched_svd_sigma": {
+          "w0": 0.004134682950091227,
+          "wa": 0.00041407540486666116,
+          "ROMAN_KL_B1_10": 4.1643150475102603e-13
+        },
+        "unchanged_10_percent_bounds_pass": {
+          "w0": true,
+          "wa": true,
+          "ROMAN_KL_B1_10": true
+        },
+        "all_15_ss_gs_stencils_bitwise_equal": true
+      },
+      {
+        "cap": 200,
+        "fkem_sigma": {
+          "w0": 0.005185671893661989,
+          "wa": 0.00040736329951387133,
+          "ROMAN_KL_B1_10": 4.1612666596754856e-13
+        },
+        "matched_svd_sigma": {
+          "w0": 0.005151415448078848,
+          "wa": 0.00040540490502293604,
+          "ROMAN_KL_B1_10": 4.1671879771367484e-13
+        },
+        "unchanged_10_percent_bounds_pass": {
+          "w0": true,
+          "wa": true,
+          "ROMAN_KL_B1_10": true
+        },
+        "all_15_ss_gs_stencils_bitwise_equal": true
+      }
+    ],
+    "old_to_matched_svd150_changed_stencil_values": {
+      "ss": 0,
+      "gs": 675,
+      "gg": 0
+    },
+    "fresh_processes": 5,
+    "each_process_restores_production_bitwise": true,
+    "statistic_limit": "The whitened fourth difference includes smooth fourth-order curvature as well as numerical artifacts; the controlled comparison does not establish purely stochastic noise.",
+    "input_and_binary_identity_across_cases": true,
+    "artifact_sha256": {
+      "matched_svd150.npz": "01b4d6f5f82ae8ef40598cd3a4548e2de9efec45d35ab605a6e33954e2f6ea6d",
+      "legacy_svd150.npz": "9d8cbd101679343e1724ac0e6a51640baa529c0dd0b4283d5d7fde9a376abfe2",
+      "legacy_fkem150.npz": "d156e78c536cfe7d04b20f38391a513649a4461b31fe462b73d53263e157d559",
+      "legacy_fkem200.npz": "f988d7f4ce241c19c2f77e8805b01a20c5eff75996bf677fc3993c9bdc1fffe3",
+      "matched_svd200.npz": "55bb324e41e2013856532dfdb63fe846643a6a745ce6e450a03f0e31b1e7defb"
+    }
+  },
+  "this_project_validation": {
+    "passed": 2,
+    "tests": [
+      "test_6_svd_noise",
+      "test_9_production_state_restored"
+    ],
+    "elapsed_seconds": 118.94155430793762,
+    "fingerprint": {
+      "interface/cosmolike_roman_kl_interface.so": "cf7fe79ab4d2def95ac578605794ff80923d4c2e1a588062207adfc9f751a492",
+      "tests/manifest_sha256.json": "f31a078da11dd9827b5077705eb74e6c458d4e8fb22ab26894e0c5a63ef0ac6a",
+      "tests/cocoa_test_utils.py": "7673a9e1cbc5a26462d662914b28a3ad12bb7f5b693fda9a5d1d5ae95574b49b",
+      "likelihood/__init__.py": "062c1edd97087c0cc1223712eef246978ad2753a59265287315315220c6f63f7",
+      "likelihood/_cosmolike_prototype_base.py": "442dca975922bd63661f5efc4e2bce1efa5f3ef3f1cbfd9c8469c3dd520c11c2",
+      "likelihood/combo_2x2pt.py": "b5eb4b5ba7373c0037e3ed2e6289930cb73a30a678bfabfa7b40a66f9962ba93",
+      "likelihood/combo_3x2pt.py": "8455accb162b6fadb64b70db800e322f92d4dd8e46588764d320f6bcd96dcb50",
+      "likelihood/combo_xi_gg.py": "ebb526b23347de579ef43129d38d811df5c0038374c5c9ca2f4b4bdddd9c28f3",
+      "likelihood/combo_xi_ggl.py": "b719d33599372d70dcbb064214c2d8e731c6ad3d342b9bb4ea6aae3e4e233dd4",
+      "likelihood/cosmic_shear.py": "7b6c718b4a95cd3324e7456265a15a6f4c0554a794f694afb307941b8d83523d",
+      "likelihood/combo_2x2pt.yaml": "63394ba5e4ee82d5beb1d1d2ebd260fc407bd5c366af3b4c2160dcea8af45d7a",
+      "likelihood/combo_3x2pt.yaml": "a17048bcf518973f2a6baf8ce59f4b1c409c2c4840fae730eb9aa0bac76cdd98",
+      "likelihood/combo_xi_gg.yaml": "f8ef17d8c2ad976de4f9bdd901bdd364ac83059eac8e88bfbb58afa11046b20a",
+      "likelihood/combo_xi_ggl.yaml": "2f051e93350a4d3eab4ed4e8a026038984fc7af07ba73091fb809dfc80cd3508",
+      "likelihood/cosmic_shear.yaml": "68f5eb51947bacb099ab70002263a67470d5a6f63bdd0637693406ba05db4da3",
+      "likelihood/params_lens.yaml": "959b2c72ecc6901648919903c93b8da06c6d6f8b0fa78861a6706c9351e906df",
+      "likelihood/params_source.yaml": "c0d2d57eae028553284f1e2b8026666d12ba238c664ee96e423609e3e589cb46"
+    },
+    "helper_sha256": "6a8e26c462f825bcb0efa6255f4db1c3082c771f6e3853aa420d4e33fbbf39b0",
+    "log_sha256": "d777e0aeb62f5e4d8340f429d207c6e5f5b49f56815c34e33a9dcfefa2e60c61",
+    "xml_sha256": "639c8e48e456444b92c343eb77e90fa8e421cf798c52e77f25a67c619233bb87",
+    "omp_threads": 6,
+    "blas_threads": 1
+  },
+  "caller_documentation": {
+    "path": "tests/data_vector/test_nonlimber_tolerance.py",
+    "before_sha256": "72c04a3a64ebe174b3071d9f4b89f42cb0e1f46b3f8eb3512f08e5e507108b4b",
+    "after_sha256": "69171547f6327d8648f02fc2c23d7b40c051c15fcb8a3b58036a08ae5f7f5d6b",
+    "executable_ast_unchanged": true
+  },
+  "original_full_run": {
+    "passed": 91,
+    "failed": 1,
+    "skipped": 1,
+    "failed_test": "test_6_svd_noise",
+    "xml_sha256": "b9dadf1a68ebfe9079a7537d3dae26d14ae51177f2a1bb7a26e37a9e1dd59954",
+    "combined_after_targeted_retry": {
+      "passed": 92,
+      "skipped": 1,
+      "unresolved_failures": 0
+    }
+  }
+}

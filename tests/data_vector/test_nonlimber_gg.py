@@ -7,14 +7,14 @@ spectrum onto the sky by the single wavenumber k = (l + 1/2)/chi; it
 fails at low l when the redshift kernels are narrow. The likelihood
 yaml key adopt_limber_gg chooses how C_l^gg is computed:
 
-  adopt_limber_gg: 0 (the default): below l = 150 the exact
+  adopt_limber_gg: 0 (the default): below l = 200 the exact
       projection, computed by cosmolike's C_cl_tomo with the split of
       Fang, Krause, Eifler & MacCrann (arXiv:1911.11947): an FFTLog
       integral of the linear power spectrum plus, in Limber, what
       linear theory misses. In Fourier space each band center takes
       the Limber value plus the non-Limber correction interpolated
-      between integer multipoles; with the shipped binning the 8
-      lowest of the 20 band centers (l = 23 to 146) lie below l = 150.
+      between integer multipoles for band centers below the
+      configured cap of l = 200.
   adopt_limber_gg: 1: Limber approximation at every multipole.
 
 The lens redshift distributions of this project are narrow (the KL
@@ -61,7 +61,7 @@ import os
 
 # OpenMP reads OMP_NUM_THREADS when the compiled libraries load, so
 # this must run before any cobaya/cosmolike import in the process.
-os.environ["OMP_NUM_THREADS"] = "4"
+os.environ["OMP_NUM_THREADS"] = os.environ.get("COCOA_TEST_OMP_THREADS", "4")
 
 import sys
 import unittest
@@ -77,7 +77,7 @@ import cocoa_test_utils as u
 # is what makes pytest collect it here, with unchanged test ids.
 TestNonLimberGG = u.nonlimber_suite(
     u, name="TestNonLimberGG", kind="gg",
-    measured=46.8854, default=0)
+    measured=46.89282197, default=0)
 
 # __name__ is "__main__" only when this file runs directly as a
 # script; pytest imports the module instead, so this block stays
