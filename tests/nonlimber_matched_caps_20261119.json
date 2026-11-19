@@ -64,7 +64,164 @@
       "legacy_fkem150.npz": "d156e78c536cfe7d04b20f38391a513649a4461b31fe462b73d53263e157d559",
       "legacy_fkem200.npz": "f988d7f4ce241c19c2f77e8805b01a20c5eff75996bf677fc3993c9bdc1fffe3",
       "matched_svd200.npz": "55bb324e41e2013856532dfdb63fe846643a6a745ce6e450a03f0e31b1e7defb"
-    }
+    },
+    "case_input_records": [
+      {
+        "variant": "legacy",
+        "engine": "FKEM",
+        "cap": 150,
+        "sigma": {
+          "w0": 0.004129304802344561,
+          "wa": 0.0004137010269278194,
+          "ROMAN_KL_B1_10": 4.1599699505149496e-13
+        },
+        "production": {
+          "gg_tol": 0.002,
+          "gs_tol": 0.01,
+          "lmax_nonlimber": 200,
+          "lowrank_flag": 0,
+          "lowrank_rank": 5,
+          "lowrank_lmax": 200,
+          "accuracy_boost": 1.0,
+          "integration_accuracy": 1
+        },
+        "block_sizes": [
+          1100,
+          900,
+          200
+        ],
+        "restoration_bitwise": true,
+        "omp_threads": 6,
+        "blas_threads": 1,
+        "helper_sha256": "2e52cd118a5075e950e6d2bd14bec9bd59f2e2b7b5d0f626f1cb74517b0581fc",
+        "library_sha256": "cf7fe79ab4d2def95ac578605794ff80923d4c2e1a588062207adfc9f751a492",
+        "frozen_manifest_sha256": "f31a078da11dd9827b5077705eb74e6c458d4e8fb22ab26894e0c5a63ef0ac6a"
+      },
+      {
+        "variant": "legacy",
+        "engine": "SVD",
+        "cap": 150,
+        "sigma": {
+          "w0": 0.004545113503941975,
+          "wa": 0.00041420254763831823,
+          "ROMAN_KL_B1_10": 4.1633619824221025e-13
+        },
+        "production": {
+          "gg_tol": 0.002,
+          "gs_tol": 0.01,
+          "lmax_nonlimber": 200,
+          "lowrank_flag": 0,
+          "lowrank_rank": 5,
+          "lowrank_lmax": 200,
+          "accuracy_boost": 1.0,
+          "integration_accuracy": 1
+        },
+        "block_sizes": [
+          1100,
+          900,
+          200
+        ],
+        "restoration_bitwise": true,
+        "omp_threads": 6,
+        "blas_threads": 1,
+        "helper_sha256": "2e52cd118a5075e950e6d2bd14bec9bd59f2e2b7b5d0f626f1cb74517b0581fc",
+        "library_sha256": "cf7fe79ab4d2def95ac578605794ff80923d4c2e1a588062207adfc9f751a492",
+        "frozen_manifest_sha256": "f31a078da11dd9827b5077705eb74e6c458d4e8fb22ab26894e0c5a63ef0ac6a"
+      },
+      {
+        "variant": "matched",
+        "engine": "SVD",
+        "cap": 150,
+        "sigma": {
+          "w0": 0.004134682950091227,
+          "wa": 0.00041407540486666116,
+          "ROMAN_KL_B1_10": 4.1643150475102603e-13
+        },
+        "production": {
+          "gg_tol": 0.002,
+          "gs_tol": 0.01,
+          "lmax_nonlimber": 200,
+          "lowrank_flag": 0,
+          "lowrank_rank": 5,
+          "lowrank_lmax": 200,
+          "accuracy_boost": 1.0,
+          "integration_accuracy": 1
+        },
+        "block_sizes": [
+          1100,
+          900,
+          200
+        ],
+        "restoration_bitwise": true,
+        "omp_threads": 6,
+        "blas_threads": 1,
+        "helper_sha256": "43fdaf8b4c9db9a92088e19f6f745f6d6d00fcaa69dff4ec3038ef2742cd94a6",
+        "library_sha256": "cf7fe79ab4d2def95ac578605794ff80923d4c2e1a588062207adfc9f751a492",
+        "frozen_manifest_sha256": "f31a078da11dd9827b5077705eb74e6c458d4e8fb22ab26894e0c5a63ef0ac6a"
+      },
+      {
+        "variant": "legacy",
+        "engine": "FKEM",
+        "cap": 200,
+        "sigma": {
+          "w0": 0.005185671893661989,
+          "wa": 0.00040736329951387133,
+          "ROMAN_KL_B1_10": 4.1612666596754856e-13
+        },
+        "production": {
+          "gg_tol": 0.002,
+          "gs_tol": 0.01,
+          "lmax_nonlimber": 200,
+          "lowrank_flag": 0,
+          "lowrank_rank": 5,
+          "lowrank_lmax": 200,
+          "accuracy_boost": 1.0,
+          "integration_accuracy": 1
+        },
+        "block_sizes": [
+          1100,
+          900,
+          200
+        ],
+        "restoration_bitwise": true,
+        "omp_threads": 6,
+        "blas_threads": 1,
+        "helper_sha256": "2e52cd118a5075e950e6d2bd14bec9bd59f2e2b7b5d0f626f1cb74517b0581fc",
+        "library_sha256": "cf7fe79ab4d2def95ac578605794ff80923d4c2e1a588062207adfc9f751a492",
+        "frozen_manifest_sha256": "f31a078da11dd9827b5077705eb74e6c458d4e8fb22ab26894e0c5a63ef0ac6a"
+      },
+      {
+        "variant": "matched",
+        "engine": "SVD",
+        "cap": 200,
+        "sigma": {
+          "w0": 0.005151415448078848,
+          "wa": 0.00040540490502293604,
+          "ROMAN_KL_B1_10": 4.1671879771367484e-13
+        },
+        "production": {
+          "gg_tol": 0.002,
+          "gs_tol": 0.01,
+          "lmax_nonlimber": 200,
+          "lowrank_flag": 0,
+          "lowrank_rank": 5,
+          "lowrank_lmax": 200,
+          "accuracy_boost": 1.0,
+          "integration_accuracy": 1
+        },
+        "block_sizes": [
+          1100,
+          900,
+          200
+        ],
+        "restoration_bitwise": true,
+        "omp_threads": 6,
+        "blas_threads": 1,
+        "helper_sha256": "43fdaf8b4c9db9a92088e19f6f745f6d6d00fcaa69dff4ec3038ef2742cd94a6",
+        "library_sha256": "cf7fe79ab4d2def95ac578605794ff80923d4c2e1a588062207adfc9f751a492",
+        "frozen_manifest_sha256": "f31a078da11dd9827b5077705eb74e6c458d4e8fb22ab26894e0c5a63ef0ac6a"
+      }
+    ]
   },
   "this_project_validation": {
     "passed": 2,
@@ -115,5 +272,20 @@
       "skipped": 1,
       "unresolved_failures": 0
     }
+  },
+  "reproduction": {
+    "working_directory": "Cocoa checkout root with its normal build/runtime environment sourced.",
+    "environment": {
+      "OMP_NUM_THREADS": "6",
+      "OMP_THREAD_LIMIT": "6",
+      "COCOA_TEST_OMP_THREADS": "6",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1"
+    },
+    "command": "python -B -m pytest projects/roman_kl/tests/data_vector/test_nonlimber_tolerance.py -k \"test_6_svd_noise or test_9_production_state_restored\" -p no:cacheprovider",
+    "regression_reproducer": "The committed Roman KL test_6_svd_noise reproduces the original failure with helper commit 0de919b and passes with helper commit 2bc4500, holding the recorded frozen inputs and compiled library fixed. The original full-run failure is retained in the Roman KL refreeze record.",
+    "five_process_control": "Five fresh processes used immutable copies of cocoa_testing_suites.py: legacy commit 0de919b, or its single setter-placement correction (same executable change as commit 2bc4500). Engine/cap/variant, all input and helper hashes, and the production state are listed in case_input_records. The saved NPZ hashes identify all fifteen stencil vectors per case.",
+    "controlled_inputs_project_commit": "14281fd11564b446799422d86c9f8031d342fa46"
   }
 }
