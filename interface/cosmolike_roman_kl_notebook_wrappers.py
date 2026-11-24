@@ -1237,8 +1237,12 @@ def get_dv(param=None, AccuracyBoost=1.0):
     Arguments:
       param = 1D float array in the FISHER_PARAM_NAMES layout, or None
               for the fiducial vector.
-      AccuracyBoost = the overall accuracy boost, forwarded to
-              _set_state as AccuracyBoost.
+      AccuracyBoost = overall multiplier applied once to CosmoLike and
+              its input-table sampling; CLAccuracyBoost stays 1.0.
+              The configured CAMB boost is multiplied by
+              1 + (AccuracyBoost - 1)/3. Native integration accuracy is
+              int(abs(3*(AccuracyBoost - 1))). The Fourier multipole bins
+              and non-Limber cap retain their initialization settings.
 
     Returns:
       1D float64 array: the masked data vector (zeros where the mask
