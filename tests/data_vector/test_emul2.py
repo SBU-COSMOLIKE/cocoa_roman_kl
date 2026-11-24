@@ -65,7 +65,9 @@ import os
 # this must run before any cobaya/cosmolike import in the process.
 # "4" is cocoa_test_utils.REQUIRED_OMP_THREADS: the race checks need
 # several threads, and the frozen references were computed with four.
-os.environ["OMP_NUM_THREADS"] = os.environ.get("COCOA_TEST_OMP_THREADS", "4")
+# E5 may use one thread; the race methods still check their required count.
+os.environ.setdefault(
+    "OMP_NUM_THREADS", os.environ.get("COCOA_TEST_OMP_THREADS", "4"))
 
 import sys
 import unittest
