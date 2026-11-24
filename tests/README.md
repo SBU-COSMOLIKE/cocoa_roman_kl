@@ -9,6 +9,8 @@ The Roman KL tests and optional studies are organized as follows.
 - <a name="optional_studies"></a>[Optional studies](studies/README.md#optional_studies)
   compare n(z) reconstructions and numerical accuracy, with plots and
   $\Delta\chi^2$ results. Run them separately from the routine tests.
+- [Matter-spectrum emulator comparison](#matter-spectrum-emulator-comparison)
+  checks the candidate against CAMB over the cosmological prior.
 
 Read this page, then the guide of each sector. The stored snapshot under
 `frozen/` feeds the data-vector checks; the covariance checks need the
@@ -111,3 +113,95 @@ python ./projects/roman_kl/EXAMPLE_EMUL2_MINIMIZE1.py --check
 ```bash
 python ./projects/roman_kl/EXAMPLE_EMUL2_MINIMIZE2.py --check
 ```
+
+
+## Matter-spectrum emulator comparison
+
+[compare_emulator_camb.py](compare_emulator_camb.py) compares the candidate
+matter-spectrum emulator with fresh CAMB predictions at 50 reproducible
+cosmologies from `EXAMPLE_EVALUATE2.yaml`. This study reads that live YAML,
+not the frozen regression configuration. It retains the example's nuisance
+point, mask and covariance, restricts $0.2<\Omega_m<0.5$, and fixes
+$\sum m_\nu=0.06$ eV. Both routes use plain `mead2020` and CAMB distances;
+the production YAML is not changed. This example uses the total-matter
+3x2pt predictions with `include_HOD_GX=0` and `include_halo_IA=0`, so the
+hybrid route's approximate cold-matter spectrum does not enter these means.
+The candidate nonlinear model is paired with the existing linear emulator;
+the comparison therefore tests their combined prediction.
+
+Set `EMULATOR_CODE_DIR` and `EMULATOR_DATA_DIR` to the candidate code and
+model checkouts. The model checkout must contain
+`emulmps/w0wa_mead2020/emulator_mead2020.keras` and its `metadata.joblib`.
+Run from the Cocoa directory with its environment activated.
+
+**Step :one:**: set the CPU allocation. On Linux:
+
+```bash
+export OMP_NUM_THREADS=4
+export OMP_PROC_BIND=close
+export OMP_PLACES=cores
+export OMP_DYNAMIC=false
+export OPENBLAS_NUM_THREADS=1
+export MKL_NUM_THREADS=1
+```
+
+On macOS:
+
+```bash
+export OMP_NUM_THREADS=4
+export OMP_PROC_BIND=disabled
+export OMP_PLACES=cores
+export OMP_DYNAMIC=false
+export OPENBLAS_NUM_THREADS=1
+export MKL_NUM_THREADS=1
+export VECLIB_MAXIMUM_THREADS=1
+```
+
+**Step :two:**: on Linux, keep this comparison on the CPU.
+
+```bash
+export CUDA_VISIBLE_DEVICES=""
+```
+
+**Step :three:**: run the comparison.
+
+```bash
+python projects/roman_kl/tests/compare_emulator_camb.py
+```
+
+The script uses the existing shared `cocoa_testing.py` machinery. It saves
+points, vectors, failures and the prediction distance
+$\Delta\chi^2=\delta m^T C^{-1}\delta m$ under
+`chains/matter_emulator_prior/EXAMPLE_EVALUATE2/`. A value below 1 passes the
+requested criterion; failures are retained, never replaced by new draws.
+`--models`, `--seed` and `--limit` change the test size, reproducible seed and
+threshold. BLAS stays at one thread. This comparison does not establish
+that posterior importance weights have adequate effective sample size;
+that must be checked on the chain used for reweighting.
+
+The saved `camb_loglikes.npy` also shows how each draw fits the supplied
+Roman forecast model vector. Compare `-2*(logL - max(logL))` with the
+prediction distance to identify errors at poor-fitting draws. The maximum
+here is only the best sampled point. These are a fixed-nuisance prior slice,
+not posterior samples or a marginalized observational exclusion test.
+
+The Roman KL cosmological priors extend beyond the coordinate ranges in
+both emulator metadata files. Keep these draws: this test measures the
+candidate over the project's requested prior, including extrapolation.
+For interpretation, compare each point with both the linear and nonlinear
+scaler bounds. Their seventh coordinate is `w0pwa`: the emulator internally
+converts its public `wa` argument to `w + wa` before scaling. Being inside
+both bounding boxes does not certify training support or predictive accuracy.
+
+The 24 November 2026 run with seed 137 passed the prediction-distance
+criterion at 1 of 50 draws; 20 candidate evaluations were nonfinite. The
+30 finite distances had median 4170.95 and maximum $8.72\times10^{22}$.
+Among the six draws inside both scaler boxes, five were finite (distances
+1.29 to 360.26) and none passed. This combined emulator route therefore
+does not meet the requested agreement criterion over this prior sample.
+
+All CAMB predictions were finite, and both routes' saved vectors reproduce
+their recorded likelihoods to floating-point precision. Every sampled
+cosmology fits the forecast model vector poorly: even the best has
+$\chi^2=73515.91$. These results do not establish the error near a forecast
+posterior or justify changing the production theory defaults.
