@@ -1,0 +1,5 @@
+pair=('w', 'w0pwa'); full default Fisher with nuisance priors.
+h: dlnFoM=3.9905951153819828e-05; ratio=1.000039846022996
+h/2: dlnFoM=2.1343579905491844e-05; ratio=1.0000213273924143
+Analytic columns: ROMAN_KL_M1, ROMAN_KL_M10, ROMAN_KL_M2, ROMAN_KL_M3, ROMAN_KL_M4, ROMAN_KL_M5, ROMAN_KL_M6, ROMAN_KL_M7, ROMAN_KL_M8, ROMAN_KL_M9
+Smooth curvature and correlated errors can invalidate the noise interpretation.

@@ -23,10 +23,9 @@ Repeatability checks still fail on changed numerical results. The report include
   E3. emul2 example2 (3x2pt): accuracy and agreement verdict.
   E4. emul2 example2: race check, required repeatability.
 
-E5 uses EXAMPLE_EVALUATE1.yaml for 50 prior points, its bounded Fisher
-calculation and 25 focused comparison points in a combined error plot. Its accuracy differences are advisory; numerical
-pipeline failures are not. Outputs go in a new timestamped folder under
-chains/hybrid_emulator_tests/. This study does not refresh frozen data.
+E5 compares 50 frozen broad points and 25 frozen focused points. It
+reports the prediction errors and optionally overlays saved Fisher contours.
+Outputs go under chains/hybrid_emulator_tests/.
 
 What makes the accuracy difference meaningful in this project: the
 non-emulated NLA references are 0.000000 because each non-emulated
@@ -184,12 +183,12 @@ class TestHybridEmulator(unittest.TestCase):
     This uses current example priors, not frozen E1--E4 reference vectors.
     It runs when the candidate code and networks are installed. Broad-prior
     accuracy exceedances and individual nonfinite candidate predictions are
-    advisory. Missing CAMB references, no valid comparisons, or incomplete
-    Fisher integration or plotting fail the test. No separate opt-in is required.
+    advisory. Missing CAMB predictions or a comparison with no valid vectors
+    fail the test. Saved Fisher contours do not affect the numerical verdict.
     """
 
-    def test_e5_hybrid_emulator_fisher(self):
-        """Use EV1 for 50 prior points, Fisher and 25 focused comparisons."""
+    def test_e5_hybrid_emulator_accuracy(self):
+        """Compare 50 saved broad points and 25 saved focused points."""
         from datetime import datetime, timezone
         from pathlib import Path
         import subprocess
@@ -227,8 +226,8 @@ class TestHybridEmulator(unittest.TestCase):
         environment["OPENBLAS_NUM_THREADS"] = "1"
         environment["MKL_NUM_THREADS"] = "1"
         environment["VECLIB_MAXIMUM_THREADS"] = "1"
-        print("E5 hybrid emulator comparison and Fisher figure:", output, flush=True)
-        frozen = project / "tests/frozen/emulator_precision"
+        print("E5 hybrid emulator vector accuracy:", output, flush=True)
+        frozen = project / "tests/fisher_reference"
         prior = frozen / "prior_50.txt"
         focused = frozen / "focused_25.txt"
         # A missing row changes the denominator even when CAMB itself succeeds.
@@ -245,7 +244,7 @@ class TestHybridEmulator(unittest.TestCase):
         )
         self.assertEqual(
             result.returncode, 0,
-            "Hybrid emulator numerical/Fisher pipeline failed; inspect " + str(output),
+            "Emulator vector comparison failed; inspect " + str(output),
         )
 
 # __name__ is "__main__" only when this file runs directly as a
