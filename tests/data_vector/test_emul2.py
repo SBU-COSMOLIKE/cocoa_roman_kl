@@ -4,8 +4,8 @@ The EXAMPLE_EMUL2 examples replace the Boltzmann code with trained
 machine-learning emulators (the emulrdrag, emulbaosn, and emulmps
 theory blocks) while the cosmolike likelihood is not emulated. An
 emulator approximates the full Boltzmann calculation, so these
-checks have no pass/fail: they measure and report, and every test
-method here passes as long as the pipeline runs. What is reported:
+accuracy comparisons report their differences without an accuracy cut.
+Repeatability checks still fail on changed numerical results. The report includes:
 
   - the emulator chi2 against the frozen emulator reference (did the
     installed emulator stack change since the freeze);
@@ -15,13 +15,13 @@ method here passes as long as the pipeline runs. What is reported:
     "agrees at this configuration" when |emulator - non-emulated|
     chi2 < 0.2, "does not agree at this configuration" otherwise;
   - a race check with the structure of the race tests 2, 4, 6 and 8
-    (test_example1.py, test_example2.py), printed with a warning
-    instead of a failure.
+    (test_example1.py, test_example2.py), required to pass the ordinary
+    repeatability tolerance.
 
   E1. emul2 example1 (cosmic shear): accuracy and agreement verdict.
-  E2. emul2 example1: race check, advisory.
+  E2. emul2 example1: race check, required repeatability.
   E3. emul2 example2 (3x2pt): accuracy and agreement verdict.
-  E4. emul2 example2: race check, advisory.
+  E4. emul2 example2: race check, required repeatability.
 
 E5 uses EXAMPLE_EVALUATE1.yaml for 50 prior points, its bounded Fisher
 calculation and 25 focused comparison points in a combined error plot. Its accuracy differences are advisory; numerical
@@ -129,7 +129,7 @@ class TestEmul2Advisory(unittest.TestCase):
                                 exact_ref, RECOMMENDATION_LIMIT)
 
     def _race_check(self, name, example, label):
-        """Run one advisory race check on an emulated configuration.
+        """Require repeatability after changing and restoring emulator inputs.
 
         Arguments:
           name    = the advisory label (E2 or E4) for the report.
@@ -138,7 +138,7 @@ class TestEmul2Advisory(unittest.TestCase):
           label   = one line naming the emulated configuration.
 
         Returns:
-          nothing; a difference above RACE_TOLERANCE prints a warning.
+          nothing; a difference above RACE_TOLERANCE fails the test.
 
         Raises:
           RuntimeError when OMP_NUM_THREADS is not the required "4"
@@ -149,6 +149,13 @@ class TestEmul2Advisory(unittest.TestCase):
         # unpacks it into the two names
         fresh, tenth = u.ten_in_a_row_chi2(example, tatt=False)
         u.report_emul2_race(f"{name}: {label}", fresh, tenth)
+        # Emulator accuracy against CAMB is advisory; identical inputs
+        # must still give a repeatable numerical likelihood.
+        self.assertLess(
+            abs(tenth - fresh), u.RACE_TOLERANCE,
+            msg="The emulated likelihood changed after returning "
+                "to its fiducial point.",
+        )
 
     def test_e1_emul2_example1_accuracy(self):
         """emul2 example1: agreement with the non-emulated chi2, advisory."""
@@ -156,7 +163,7 @@ class TestEmul2Advisory(unittest.TestCase):
                              "example1 (cosmic shear, emulated)")
 
     def test_e2_emul2_example1_race(self):
-        """emul2 example1: 10-in-a-row race check, advisory."""
+        """emul2 example1: 10-in-a-row race check, required repeatability."""
         self._race_check("E2", "emul2_example1",
                          "example1 (cosmic shear, emulated) race check")
 
@@ -166,7 +173,7 @@ class TestEmul2Advisory(unittest.TestCase):
                              "example2 (3x2pt, emulated)")
 
     def test_e4_emul2_example2_race(self):
-        """emul2 example2: 10-in-a-row race check, advisory."""
+        """emul2 example2: 10-in-a-row race check, required repeatability."""
         self._race_check("E4", "emul2_example2",
                          "example2 (3x2pt, emulated) race check")
 
