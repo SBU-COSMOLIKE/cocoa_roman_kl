@@ -36,12 +36,13 @@ likelihood:
 # projects/roman_kl/tests/data_vector/README.md). A point outside
 # the cut has prior -inf, so cobaya never evaluates its likelihood.
 prior:
+  emulator_omegabh2_cap: "lambda omegab, H0: 0.0 if omegab*(H0/100)**2 < 0.035 else -np.inf"
   amplitude_cut: "lambda As_1e9, ROMAN_KL_B1_1, ROMAN_KL_B1_2, ROMAN_KL_B1_3, ROMAN_KL_B1_4, ROMAN_KL_B1_5, ROMAN_KL_B1_6, ROMAN_KL_B1_7, ROMAN_KL_B1_8, ROMAN_KL_B1_9, ROMAN_KL_B1_10: 0.0 if (As_1e9/2.128048)*max((ROMAN_KL_B1_1/1.24)**2, (ROMAN_KL_B1_2/1.36)**2, (ROMAN_KL_B1_3/1.48)**2, (ROMAN_KL_B1_4/1.6)**2, (ROMAN_KL_B1_5/1.72)**2, (ROMAN_KL_B1_6/1.84)**2, (ROMAN_KL_B1_7/1.96)**2, (ROMAN_KL_B1_8/2.08)**2, (ROMAN_KL_B1_9/2.2)**2, (ROMAN_KL_B1_10/2.32)**2) <= 8 else -np.inf"
 
 params:
   As_1e9:
     prior:
-      min: 0.770
+      min: 1.0000000000000002
       max: 3.5
     ref:
       dist: norm
@@ -64,7 +65,7 @@ params:
   H0:
     prior:
       min: 40
-      max: 90
+      max: 84.99999999999999
     ref:
       dist: norm
       loc: 67.27
@@ -84,8 +85,8 @@ params:
     drop: true
   omegam:
     prior:
-      min: 0.2
-      max: 0.5
+      min: 0.20000000000000004
+      max: 0.49999999999999994
     ref:
       dist: norm
       loc: 0.3156
