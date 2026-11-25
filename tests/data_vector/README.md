@@ -616,6 +616,13 @@ Counts use the thresholds 0.2, 0.5, 1 and 4 in that order.
 The previous broad table contained two nonfinite candidate evaluations.
 Both cosmologies exceeded the new $w_0+w_a$ cap and were replaced.
 
+The common coordinate ranges recorded by the two installed scalers leave
+37 broad and 10 focused cosmologies outside at least one extremum in
+$n_s$, $H_0$ or $\Omega_b$. Inside those ranges, $E<4$ for 8 of 13 broad
+and 15 of 15 focused draws. Outside, the corresponding counts are 1 of 37
+and 2 of 10. These coordinate ranges describe a box. The joint training
+coverage can be narrower within that box.
+
 <!-- end hybrid-emulator figure -->
 
 E5 reads the saved `benchmark.yaml` in [fisher_reference/](../fisher_reference/).
