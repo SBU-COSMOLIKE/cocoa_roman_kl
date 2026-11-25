@@ -1,6 +1,6 @@
 {
   "accuracy_checks": "pair=('w', 'w0pwa'); relative_tolerance=0.01; passed=True",
-  "archive": "ev1_ombh2_0035_20261124_2x4",
+  "archive": "ordinary_accuracy_2x4_20261125-w0pwa_m0p4-shear",
   "center": [
     2.128048,
     0.9645,
@@ -30,6 +30,7 @@
     0.0,
     0.0
   ],
+  "fisher_source_archive": "ev1_ombh2_0035_20261124_2x4",
   "gaussian_width": [
     null,
     null,
@@ -119,6 +120,7 @@
     "ROMAN_KL_M9",
     "ROMAN_KL_M10"
   ],
+  "prior_revision": "20261125-w0pwa-cap",
   "quality": "converged",
   "quality_note": "Saved Fisher reference converged, maximum FoM shift 0.26%.",
   "rows": [
@@ -1223,6 +1225,7 @@
     1098,
     1099
   ],
+  "sample_power": 18,
   "steps": [
     0.04000000000000001,
     0.001,
@@ -1258,7 +1261,7 @@
     84.99999999999999,
     0.095,
     0.49999999999999994,
-    -0.01,
+    -0.40000000000000036,
     -0.01,
     null,
     null,
@@ -1280,5 +1283,6 @@
     null,
     null,
     null
-  ]
+  ],
+  "w0pwa_cut": "w0+wa < -0.4"
 }

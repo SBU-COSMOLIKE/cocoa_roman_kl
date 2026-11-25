@@ -582,6 +582,9 @@ $\chi^2=73515.91$. These results do not establish the error near a forecast
 posterior or justify changing the production theory defaults.
 
 <!-- hybrid-emulator figure -->
+The figures below show the earlier benchmark. Runs with $w_0+w_a<-0.4$
+are pending.
+
 **Emulator training range**
 
 | Parameter | Range |
