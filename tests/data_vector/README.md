@@ -582,9 +582,6 @@ $\chi^2=73515.91$. These results do not establish the error near a forecast
 posterior or justify changing the production theory defaults.
 
 <!-- hybrid-emulator figure -->
-The figures below show the earlier benchmark. Runs with $w_0+w_a<-0.4$
-are pending.
-
 **Emulator training range**
 
 | Parameter | Range |
@@ -593,7 +590,12 @@ are pending.
 | Primordial amplitude | $1<10^9 A_s\le 3.5$ |
 | Hubble constant | $H_0<85$ km/s/Mpc |
 | Present dark-energy equation of state in CPL | $w_0>-2$ |
+| Early-time dark-energy equation of state | $w_0+w_a<-0.4$ |
 | Physical baryon density | $\Omega_b(H_0/100)^2<0.035$ |
+
+The revised tables retain cosmologies that already satisfy the cap and
+replace the excluded rows deterministically. The focused replacements
+use the saved Fisher matrix integrated over the capped priors.
 
 The fixed tables intersect this range with the benchmark priors. CAMB uses
 one massive species with $\sum m_\nu=0.06$ eV. Both model routes evaluate
@@ -609,12 +611,10 @@ Counts use the thresholds 0.2, 0.5, 1 and 4 in that order.
 
 | Case | Broad below threshold (50) | Focused below threshold (25) | Nonfinite broad/focused |
 | --- | --- | --- | --- |
-| Roman KL | 3/5/5/9 | 7/11/14/16 | 2/0 |
+| Roman KL | 3/6/6/9 | 7/11/15/17 | 0/0 |
 
-CAMB completed all 50 broad predictions. The candidate reported a floating-point
-overflow and a nonfinite likelihood at broad table rows 8 and 20. Both points
-are within the benchmark cuts and extend beyond the emulator's training
-scaler bounds in several coordinates.
+The previous broad table contained two nonfinite candidate evaluations.
+Both cosmologies exceeded the new $w_0+w_a$ cap and were replaced.
 
 <!-- end hybrid-emulator figure -->
 
