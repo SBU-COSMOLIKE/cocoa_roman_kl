@@ -206,7 +206,7 @@ cosmology fits the forecast model vector poorly: even the best has
 $\chi^2=73515.91$. These results do not establish the error near a forecast
 posterior or justify changing the production theory defaults.
 
-### Official hybrid-emulator accuracy test
+### Hybrid-emulator accuracy test
 
 <!-- hybrid-emulator figure -->
 The CAMB reference uses the saved benchmark's standard numerical controls and one
