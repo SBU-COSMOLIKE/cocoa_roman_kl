@@ -355,11 +355,22 @@ class _cosmolike_prototype_base(DataSetLikelihood):
           source_multihisto_file=self.source_file,
           source_ntomo=int(self.source_ntomo))
       ci.init_data_fourier(self.cov_file, self.mask_file, self.data_vector_file)
-      ci.init_accuracy_boost(accuracy_boost=0.35, 
-                             integration_accuracy=-1) # seems enough to compute PM
+      # seems enough to compute PM
+      ci.init_accuracy_boost(
+          accuracy_boost=0.35,
+          integration_accuracy=-1,
+          integration_accuracy_ss=getattr(self, "integration_accuracy_ss", 1.0),
+          integration_accuracy_gs=getattr(self, "integration_accuracy_gs", 1.0),
+          integration_accuracy_gg=getattr(self, "integration_accuracy_gg", 1.0),
+      )
     else:
-      ci.init_accuracy_boost(accuracy_boost=self.accuracyboost, 
-                             integration_accuracy=int(self.integration_accuracy))
+      ci.init_accuracy_boost(
+          accuracy_boost=self.accuracyboost,
+          integration_accuracy=int(self.integration_accuracy),
+          integration_accuracy_ss=getattr(self, "integration_accuracy_ss", 1.0),
+          integration_accuracy_gs=getattr(self, "integration_accuracy_gs", 1.0),
+          integration_accuracy_gg=getattr(self, "integration_accuracy_gg", 1.0),
+      )
       # is_linear=False: cosmolike uses the nonlinear P(k) it is handed
       # (True would force the linear spectrum everywhere)
       ci.init_cosmo_runmode(is_linear=False)
