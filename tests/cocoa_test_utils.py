@@ -152,11 +152,15 @@ ACCURACY_KNOBS = [
     ("camb k_per_logint -> 50", {}, {"k_per_logint": 50}),
 ]
 
+# The random-model test uses this current NLA analysis and its joint prior.
+NMODELS_CURRENT_PRIOR = True
+NMODELS_EXAMPLES = (("example2", "Roman kinematic lensing - 3×2pt"),)
+
+
 # Keys of each EXAMPLES entry:
 #   "frozen_module"     = the configuration's file in tests/frozen/;
-#   "provenance"        = the example yaml the configuration was frozen
-#                         from (a human-readable snapshot in frozen/,
-#                         never loaded);
+#   "provenance"        = the current evaluation YAML for the random-model
+#                         test. frozen/ retains a snapshot for reference.
 #   "likelihood"        = the cobaya likelihood component name, needed to
 #                         reach that block inside the loaded configuration;
 #   "source_likelihood" = (2x2pt only) the likelihood name in the
